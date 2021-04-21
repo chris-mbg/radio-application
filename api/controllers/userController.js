@@ -242,7 +242,24 @@ const deleteUserFavourite = (req, res) => {
       }
     });
   } else if(req.body.programId) {
-
+    query = /*sql*/`SELECT * from programs WHERE programId = $programId AND userId = $userId`
+    params.$programId = req.body.programId;
+    let programToDelete = db.get(query, params);
+    if (!programToDelete) {
+      res
+        .status(400)
+        .send(`This favourite program does not exist for this user`);
+      return;
+    }
+    query = /*sql*/ `DELETE FROM programs WHERE userId = $userId AND programId = $programId`;
+    db.run(query, params, function (err) {
+      if (err) {
+        console.log(err)
+        res.json({ error: err });
+      } else {
+        res.json({ success: `Favourite program deleted for user with id:${req.session.user.userId}`, changes: this.changes });
+      }
+    });
   } else {
     query = /*sql*/`SELECT * from episodes WHERE episodeId = $episodeId AND userId = $userId`
     params.$episodeId = req.body.episodeId;
