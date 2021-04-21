@@ -123,7 +123,7 @@ const getAllSavedFavourites = (req, res) => {
 
   db.all(
     /*sql*/ `SELECT * FROM channels WHERE userId = $id`,
-    { $id: req.params.userId },
+    { $id: req.session.user.userId },
     (err, result) => {
       if (err) {
         res.json({ error: err });
@@ -132,7 +132,7 @@ const getAllSavedFavourites = (req, res) => {
         allUserFavourites.channels = result;
         db.all(
           /*sql*/ `SELECT * FROM programs WHERE userId = $id`,
-          { $id: req.params.userId },
+          { $id: req.session.user.userId },
           (err, result) => {
             if (err) {
               res.json({ error: err });
@@ -141,7 +141,7 @@ const getAllSavedFavourites = (req, res) => {
               allUserFavourites.programs = result;
               db.all(
                 /*sql*/ `SELECT * FROM episodes WHERE userId = $id`,
-                { $id: req.params.userId },
+                { $id: req.session.user.userId },
                 (err, result) => {
                   if (err) {
                     res.json({ error: err });
@@ -164,7 +164,7 @@ const saveFavouriteToUser = (req, res) => {
   if (req.body.channelId) {
     let query = /*sql*/ `INSERT INTO channels (channelId, channelName, userId) VALUES ($channelId, $channelName, $userId)`;
     let params = {
-      $userId: req.params.userId,
+      $userId: req.session.user.userId,
       $channelId: req.body.channelId,
       $channelName: req.body.channelName,
     };
@@ -182,7 +182,7 @@ const saveFavouriteToUser = (req, res) => {
   } else if (req.body.programId) {
     let query = /*sql*/ `INSERT INTO programs (programId, programName, userId) VALUES ($programId, $programName, $userId)`;
     let params = {
-      $userId: req.params.userId,
+      $userId: req.session.user.userId,
       $programId: req.body.programId,
       $programName: req.body.programName,
     };
@@ -201,7 +201,7 @@ const saveFavouriteToUser = (req, res) => {
   } else {
     let query = /*sql*/ `INSERT INTO episodes (episodeId, episodeTitle, userId) VALUES ($episodeId, $episodeTitle, $userId)`;
     let params = {
-      $userId: req.params.userId,
+      $userId: req.session.user.userId,
       $episodeId: req.body.episodeId,
       $episodeTitle: req.body.episodeTitle,
     };
@@ -212,12 +212,41 @@ const saveFavouriteToUser = (req, res) => {
         return;
       } else {
         res.json({
-          success: "Favourite program added.",
+          success: "Favourite episode added.",
           lastID: this.lastID,
         });
       }
     });
   }
+};
+
+const deleteUserFavourite = (req, res) => {
+  let query;
+  let params = { $userId: req.session.user.userId };
+  if(req.body.channelId) {
+    query = /*sql*/`SELECT * from channel WHERE channelId = $channelId AND userId = $userId`
+    params.$channelId = req.body.channelId;
+    let channelToDelete = db.get(query, params);
+    if (!channelToDelete) {
+      res
+        .status(400)
+        .send(`This favourite channel does not exist for this user`);
+      return;
+    }
+    query = /*sql*/ `DELETE FROM channels WHERE userId = $userId AND channelId = $channelId`;
+    db.run(query, params, function (err) {
+      if (err) {
+        res.json({ error: err });
+      } else {
+        res.json({ success: `Favourite channel deleted for user with id:${req.session.user.userId}`, changes: this.changes });
+      }
+    });
+  } else if(req.body.programId) {
+
+  } else {
+    
+  }
+
 };
 
 module.exports = {
@@ -229,4 +258,5 @@ module.exports = {
   deleteUserById,
   getAllSavedFavourites,
   saveFavouriteToUser,
+  deleteUserFavourite
 };
