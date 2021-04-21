@@ -118,6 +118,50 @@ const deleteUserById = (req, res) => {
   });
 };
 
+const getAllSavedFavourites = (req, res) => {
+  let allUserFavourites = {};
+
+  db.all(
+    /*sql*/ `SELECT * FROM channels WHERE userId = $id`,
+    { $id: req.params.userId },
+    (err, result) => {
+      if (err) {
+        res.json({ error: err });
+        return;
+      } else {
+        allUserFavourites.channels = result;
+        db.all(
+          /*sql*/ `SELECT * FROM programs WHERE userId = $id`,
+          { $id: req.params.userId },
+          (err, result) => {
+            if (err) {
+              res.json({ error: err });
+              return;
+            } else {
+              console.log(result);
+              allUserFavourites.programs = result;
+              db.all(
+                /*sql*/ `SELECT * FROM episodes WHERE userId = $id`,
+                { $id: req.params.userId },
+                (err, result) => {
+                  if (err) {
+                    res.json({ error: err });
+                    return;
+                  } else {
+                    allUserFavourites.episodes = result;
+                    console.log('Deep in func...', allUserFavourites)
+                    res.json(allUserFavourites)
+                  }
+                }
+              );
+            }
+          }
+        );
+      }
+    }
+  );
+};
+
 module.exports = {
   whoami,
   login,
@@ -125,4 +169,5 @@ module.exports = {
   registerNewUser,
   editUserById,
   deleteUserById,
+  getAllSavedFavourites,
 };
