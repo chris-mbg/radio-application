@@ -12,7 +12,7 @@ const episodePrefix = '/api/v1/episodes';
 
 const userPrefix = "/api/v1/users"
 
-//const channelRoutes = require("./routes/channelRoutes.js");
+const channelRoutes = require("./routes/channelRoutes.js");
 // const programRoutes = require("./routes/programRoutes");
 // const episodeRoutes = require("./routes/episodeRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -33,7 +33,7 @@ app.use(session({
   }
 }));
 
-//app.use(channelPrefix, channelRoutes);
+app.use(channelPrefix, channelRoutes);
 // app.use(programPrefix, programRoutes);
 // app.use(episodePrefix, episodeRoutes);
 app.use(userPrefix, userRoutes);
