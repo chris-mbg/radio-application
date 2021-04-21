@@ -50,7 +50,7 @@ const registerNewUser = (req, res) => {
         $email: userToReg.email,
         $password: userToReg.password,
         $firstName: userToReg.firstName,
-        $lastName: userToReg.lastName
+        $lastName: userToReg.lastName,
       };
       db.run(query, params, function (err, result) {
         if (err) {
@@ -80,15 +80,15 @@ const registerNewUser = (req, res) => {
 
 const editUserById = (req, res) => {
   let query = /*sql*/ `UPDATE users SET ${Object.keys(req.body)
-        .map((k) => k + " = $" + k)
-        .join(", ")} WHERE userId = $id`;
+    .map((k) => k + " = $" + k)
+    .join(", ")} WHERE userId = $id`;
   let params = { $id: req.params.userId };
   for (key in req.body) {
     params["$" + key] = req.body[key];
   }
-  db.run(query, params, function(err) {
+  db.run(query, params, function (err) {
     if (err) {
-      console.log('Error in edit:', err)
+      console.log("Error in edit:", err);
       res.json({ error: err });
     } else {
       res.json({ success: "User info updated", changes: this.changes });
@@ -96,6 +96,27 @@ const editUserById = (req, res) => {
   });
 };
 
+const deleteUserById = (req, res) => {
+  let query = /*sql*/ `SELECT * from users WHERE userId = $id`;
+  let params = { $id: req.params.userId };
+  let userToDelete = db.get(query, params);
+  // Check if the user exist
+  if (!userToDelete) {
+    res
+      .status(400)
+      .send(`The user with id:${req.params.userId} does not exist`);
+    return;
+  }
+
+  query = /*sql*/ `DELETE FROM users WHERE userId = $id`;
+  db.run(query, params, function (err) {
+    if (err) {
+      res.json({ error: err });
+    } else {
+      res.json({ success: "User deleted", changes: this.changes });
+    }
+  });
+};
 
 module.exports = {
   whoami,
@@ -103,4 +124,5 @@ module.exports = {
   logout,
   registerNewUser,
   editUserById,
+  deleteUserById,
 };

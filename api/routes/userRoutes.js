@@ -7,6 +7,8 @@ router.get("/whoami", userController.whoami);
 router.post("/login", userController.login);
 router.get("/logout", userController.logout);
 router.post("/register", userController.registerNewUser);
-router.put("/:userId/edit", userController.editUserById)
+router.put("/:userId", userController.editUserById);
+router.delete("/:userId", userController.deleteUserById);
+
 
 module.exports = router;
