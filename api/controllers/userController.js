@@ -119,7 +119,7 @@ const deleteUserById = (req, res) => {
 };
 
 const getAllSavedFavourites = (req, res) => {
-  let allUserFavourites = {};
+  const allUserFavourites = {};
 
   db.all(
     /*sql*/ `SELECT * FROM channels WHERE userId = $id`,
@@ -138,7 +138,6 @@ const getAllSavedFavourites = (req, res) => {
               res.json({ error: err });
               return;
             } else {
-              console.log(result);
               allUserFavourites.programs = result;
               db.all(
                 /*sql*/ `SELECT * FROM episodes WHERE userId = $id`,
@@ -149,8 +148,7 @@ const getAllSavedFavourites = (req, res) => {
                     return;
                   } else {
                     allUserFavourites.episodes = result;
-                    console.log('Deep in func...', allUserFavourites)
-                    res.json(allUserFavourites)
+                    res.json(allUserFavourites);
                   }
                 }
               );
@@ -162,6 +160,66 @@ const getAllSavedFavourites = (req, res) => {
   );
 };
 
+const saveFavouriteToUser = (req, res) => {
+  if (req.body.channelId) {
+    let query = /*sql*/ `INSERT INTO channels (channelId, channelName, userId) VALUES ($channelId, $channelName, $userId)`;
+    let params = {
+      $userId: req.params.userId,
+      $channelId: req.body.channelId,
+      $channelName: req.body.channelName,
+    };
+    db.run(query, params, function (err, result) {
+      if (err) {
+        res.status(400).json({ error: err });
+        return;
+      } else {
+          res.json({
+            success: "Favourite channel added.",
+            lastID: this.lastID,
+          });
+      }
+    });
+  } else if (req.body.programId) {
+    let query = /*sql*/ `INSERT INTO programs (programId, programName, userId) VALUES ($programId, $programName, $userId)`;
+    let params = {
+      $userId: req.params.userId,
+      $programId: req.body.programId,
+      $programName: req.body.programName,
+    };
+    db.run(query, params, function (err, result) {
+      if (err) {
+
+        res.status(400).json({ error: err });
+        return;
+      } else {
+        res.json({
+          success: "Favourite program added.",
+          lastID: this.lastID,
+        });
+      }
+    });
+  } else {
+    let query = /*sql*/ `INSERT INTO episodes (episodeId, episodeTitle, userId) VALUES ($episodeId, $episodeTitle, $userId)`;
+    let params = {
+      $userId: req.params.userId,
+      $episodeId: req.body.episodeId,
+      $episodeTitle: req.body.episodeTitle,
+    };
+    db.run(query, params, function (err, result) {
+      if (err) {
+        console.log('Error:', err)
+        res.status(400).json({ error: err });
+        return;
+      } else {
+        res.json({
+          success: "Favourite program added.",
+          lastID: this.lastID,
+        });
+      }
+    });
+  }
+};
+
 module.exports = {
   whoami,
   login,
@@ -170,4 +228,5 @@ module.exports = {
   editUserById,
   deleteUserById,
   getAllSavedFavourites,
+  saveFavouriteToUser,
 };
