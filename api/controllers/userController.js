@@ -244,7 +244,24 @@ const deleteUserFavourite = (req, res) => {
   } else if(req.body.programId) {
 
   } else {
-    
+    query = /*sql*/`SELECT * from episodes WHERE episodeId = $episodeId AND userId = $userId`
+    params.$episodeId = req.body.episodeId;
+    let episodeToDelete = db.get(query, params);
+    if (!episodeToDelete) {
+      res
+        .status(400)
+        .send(`This favourite episode does not exist for this user`);
+      return;
+    }
+    query = /*sql*/ `DELETE FROM episodes WHERE userId = $userId AND episodeId = $episodeId`;
+    db.run(query, params, function (err) {
+      if (err) {
+        console.log(err)
+        res.json({ error: err });
+      } else {
+        res.json({ success: `Favourite episode deleted for user with id:${req.session.user.userId}`, changes: this.changes });
+      }
+    });
   }
 
 };

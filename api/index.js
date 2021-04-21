@@ -29,7 +29,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     secure: "auto",
-    maxAge: 1000 * 60 * 15    // Expires after 15 min, with this setting
+    maxAge: 1000 * 60 * 60    // Expires after 60 min, with this setting
   }
 }));
 
