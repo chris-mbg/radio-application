@@ -79,8 +79,23 @@ const registerNewUser = (req, res) => {
 };
 
 const editUserById = (req, res) => {
-  
+  let query = /*sql*/ `UPDATE users SET ${Object.keys(req.body)
+        .map((k) => k + " = $" + k)
+        .join(", ")} WHERE userId = $id`;
+  let params = { $id: req.params.userId };
+  for (key in req.body) {
+    params["$" + key] = req.body[key];
+  }
+  db.run(query, params, function(err) {
+    if (err) {
+      console.log('Error in edit:', err)
+      res.json({ error: err });
+    } else {
+      res.json({ success: "User info updated", changes: this.changes });
+    }
+  });
 };
+
 
 module.exports = {
   whoami,
