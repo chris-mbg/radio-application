@@ -118,7 +118,7 @@ const deleteUserById = (req, res) => {
   });
 };
 
-const getAllSavedFavourites = (req, res) => {
+const getAllSavedFavouritesForUser = (req, res) => {
   const allUserFavourites = {};
 
   db.all(
@@ -290,7 +290,7 @@ module.exports = {
   registerNewUser,
   editUserById,
   deleteUserById,
-  getAllSavedFavourites,
+  getAllSavedFavouritesForUser,
   saveFavouriteToUser,
   deleteUserFavourite
 };
