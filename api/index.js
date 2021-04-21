@@ -1,16 +1,42 @@
 const express = require('express');
 const session = require('express-session');
 
-const secretKey = require('./secretKey.json');
+const secret = require('./secretKey.json');
 
 const path = require('path');
 const port = 3001;
+
+const channelPrefix = '/api/v1/channels';
+const programPrefix = '/api/v1/programs';
+const episodePrefix = '/api/v1/episodes';
+
+const userPrefix = "/api/v1/users"
+
+const channelRoutes = require("./routes/channelRoutes.js");
+// const programRoutes = require("./routes/programRoutes");
+// const episodeRoutes = require("./routes/episodeRoutes");
+// const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
 // Middleware to get access to request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// app.use(session({
+//   secret: secret.secretKey,
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: {
+//     secure: "auto",
+//     maxAge: 1000 * 60 * 15    // Expires after 15 min, with this setting
+//   }
+// }));
+
+app.use(channelPrefix, channelRoutes);
+// app.use(programPrefix, programRoutes);
+// app.use(episodePrefix, episodeRoutes);
+// app.use(userPrefix, userRoutes);
 
 
 app.listen(port, err => {
