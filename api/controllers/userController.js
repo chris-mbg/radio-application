@@ -38,6 +38,23 @@ const logout = (req, res) => {
 const registerNewUser = (req, res) => {
   const userToReg = req.body;
   console.log("In user controller, user To reg:", userToReg);
+
+  // Validate email.
+  const emailRegex = /^[^@\s]+@\w+(\.\w+)+\w$/gm;
+  const emailOK = emailRegex.test(userToReg.email);
+  if(!emailOK) {
+    res.status(400).json({ error: "Email not valid." });
+    return
+  }
+
+  // Validate password
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+  const passwordOK = passwordRegex.test(userToReg.password);
+  if(!passwordOK) {
+    res.status(400).json({ error: "Password not valid." });
+    return
+  }
+
   let query = /*sql*/ `SELECT * FROM users WHERE email = $email`;
   let params = { $email: userToReg.email };
   db.get(query, params, (err, userExist) => {
