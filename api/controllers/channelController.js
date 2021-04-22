@@ -30,7 +30,6 @@ const getChannelSchedule = async (req, res) => {
   channelSchedule = await channelSchedule.json();
 
   channelSchedule.schedule = channelSchedule.schedule.map((prog) => {
-    console.log(new Date(prog.starttimeutc));
     return {
       ...prog,
       starttimeutc: convertToDateObject(prog.starttimeutc),
