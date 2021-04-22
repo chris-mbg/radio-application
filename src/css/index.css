@@ -1,0 +1,50 @@
+/* General styles */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&family=Montserrat:ital,wght@0,100;0,200;0,400;0,500;0,700;1,200&display=swap');
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+}
+
+button {
+  margin: 1rem auto;
+  width: 120px;
+  height: 40px;
+  color: #251e18;
+  background-color: #f75A0d;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: 'Montserrat';
+  border-radius: 5px;
+}
+button:hover {
+  box-shadow: 0 0px 20px 2px #f75A0d;
+  filter: brightness(1.1);
+}
+
+.App {
+  margin: 0;
+  background-color: #3d362b;
+  color: #f5f5fa;
+  min-height: 97vh;
+}
+
+/* * COLOR CODES! */
+/*  Nearly black:   #251e18
+    Dark Grey:      #3d362b
+    Darker green    #3a5e27
+    Lighter green   #859448
+    Orange          #f75A0d
+    Red orange      #f34508
+
+    Text colors:
+    Standard: Nearly white  #f5f5fa
+    Disabled: Greyish:      #aeaeb2
+*/
