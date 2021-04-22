@@ -44,6 +44,22 @@ const UserContextProvider = props => {
     }
   };
 
+  const registerNewUser = async newUserInput => {
+    let result = await fetch("/api/v1/users/register", {
+      method: 'POST',
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(newUserInput)
+    });
+    result = await result.json();
+    console.log('User registered?', result)
+    if(result.success) {
+      loggedInCheck();
+      history.push('/');
+    };
+  };
+
   const values = {
     userLoggedIn,
     logInUser,
