@@ -11,8 +11,8 @@ const Navbar = () => {
         {/* </div> */}
       </NavLink>
       <div className={styles.linkWrapper}>
-        <NavLink to="/">Något annat</NavLink>
-        <NavLink to="/">Något annat</NavLink>
+        <NavLink to="/">Logga in/Registrera</NavLink>
+        <NavLink to="/"><i class="fas fa-user fa-lg"></i></NavLink>
       </div>
     </nav>
   );

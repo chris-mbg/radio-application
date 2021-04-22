@@ -17,8 +17,9 @@
   align-items: flex-end;
 }
 .navLogo {
-  color: rgb(243, 69, 8);
+  color: #f34508;
   font-family: 'Josefin Sans', sans-serif;
+  /* text-shadow: 2px 2px #3d362b; */
   letter-spacing: 2px;
   font-size: 2rem;
   /* line-height: 3rem; */
