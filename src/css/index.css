@@ -33,9 +33,10 @@ button:hover {
   margin: 0;
   background-color: #3d362b;
   color: #f5f5fa;
-  min-height: 93vh;
+  min-height: 100vh;
+  /* width: 100vh; */
   position: relative;
-  padding-bottom: 60px;
+  padding-bottom: 70px;
 }
 
 /* * COLOR CODES! */

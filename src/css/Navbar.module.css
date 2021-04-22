@@ -1,0 +1,51 @@
+.navbar {
+  background-color: #251e18;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+  /* width: 100%; */
+}
+.navbar a {
+  text-decoration: none;
+  color: #f5f5fa;
+  font-weight: 500;
+}
+.navLogoWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.navLogo {
+  color: #f34508;
+  font-family: 'Josefin Sans', sans-serif;
+  /* text-shadow: 2px 2px #3d362b; */
+  letter-spacing: 2px;
+  font-size: 2rem;
+  /* line-height: 3rem; */
+  margin: 0 1rem 0 0;
+}
+.radioIconWrapper {
+  display: flex;
+  /* justify-content: baseline; */
+  align-items: flex-end;
+  align-self: center;
+}
+.radioIcon {
+  width: 2rem;
+  height: 2rem;
+  /* margin: 1rem 0; */
+  margin-bottom: 0.3rem;
+
+}
+.linkWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.linkWrapper a {
+  margin-left: 1rem;
+}
+.linkWrapper a:hover {
+  color: #859448;
+}
