@@ -15,8 +15,7 @@ const userPrefix = "/api/v1/users"
 const channelRoutes = require("./routes/channelRoutes");
 const programRoutes = require("./routes/programRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
-
-//const episodeRoutes = require("./routes/episodeRoutes");
+const episodeRoutes = require("./routes/episodeRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const app = express();
@@ -38,7 +37,7 @@ app.use(session({
 app.use(channelPrefix, channelRoutes);
 app.use(programPrefix, programRoutes);
 app.use(categoryPrefix, categoryRoutes);
-//app.use(episodePrefix, episodeRoutes);
+app.use(episodePrefix, episodeRoutes);
 app.use(userPrefix, userRoutes);
 
 // The build folder is now avaliable for the backend. Can run the application via the backend
