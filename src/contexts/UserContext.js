@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export const UserContext = createContext();
@@ -15,6 +15,8 @@ const UserContextProvider = props => {
       setUserLoggedIn({userName: result.email, userId: result.userId});
     }
   };
+
+  useEffect( () => loggedInCheck(), []);
 
   const logInUser = async userInput => {
     let result = await fetch("/api/v1/users/login", {
