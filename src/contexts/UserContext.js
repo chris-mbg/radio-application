@@ -60,10 +60,20 @@ const UserContextProvider = props => {
     };
   };
 
+  const deleteUser = async () => {
+    let result = await fetch(`/api/v1/users/${req.session.user.userId}`);
+    result = await result.json();
+    if(result.success) {
+      loggedInCheck();
+      history.push('/');
+    }
+  };
+
   const values = {
     userLoggedIn,
     logInUser,
     logoutUser,
+    deleteUser,
   }
 
   return (

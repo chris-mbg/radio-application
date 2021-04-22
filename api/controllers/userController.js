@@ -130,6 +130,7 @@ const deleteUserById = (req, res) => {
     if (err) {
       res.json({ error: err });
     } else {
+      delete req.session.user;
       res.json({ success: "User deleted", changes: this.changes });
     }
   });
