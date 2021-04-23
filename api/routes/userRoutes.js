@@ -7,10 +7,11 @@ router.get("/whoami", userController.whoami);
 router.post("/login", userController.login);
 router.get("/logout", userController.logout);
 router.post("/register", userController.registerNewUser);
-router.put("/:userId", userController.editUserById);
 router.delete("/favourites", userController.deleteUserFavourite);
-router.delete("/:userId", userController.deleteUserById);
 router.get("/favourites", userController.getAllSavedFavouritesForUser);
 router.post("/favourites", userController.saveFavouriteToUser);
+router.get("/:userId", userController.getUserById);
+router.put("/:userId", userController.editUserById);
+router.delete("/:userId", userController.deleteUserById);
 
 module.exports = router;

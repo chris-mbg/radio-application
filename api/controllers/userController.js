@@ -35,6 +35,20 @@ const logout = (req, res) => {
   res.json({ success: "User logged out." });
 };
 
+const getUserById = (req, res) => {
+  let query = /*sql*/ `SELECT * from users WHERE userId = $userId`
+  let params = { $userId: req.params.userId };
+  db.get(query, params, (err, user) => {
+    if(err) {
+      res.json({ error: err });
+      return
+    } else {
+      delete user.password
+      res.json(user)
+    }
+  });
+}
+
 const registerNewUser = (req, res) => {
   const userToReg = req.body;
   console.log("In user controller, user To reg:", userToReg);
@@ -305,6 +319,7 @@ module.exports = {
   whoami,
   login,
   logout,
+  getUserById,
   registerNewUser,
   editUserById,
   deleteUserById,
