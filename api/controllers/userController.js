@@ -62,7 +62,7 @@ const registerNewUser = (req, res) => {
   }
 
   // Validate password
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,}$/;
   const passwordOK = passwordRegex.test(userToReg.password);
   if(!passwordOK) {
     res.status(400).json({ error: "Password not valid." });
