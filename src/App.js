@@ -1,9 +1,11 @@
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import UserContextProvider from "./contexts/UserContext";
 import RadioContextProvider from "./contexts/RadioContext";
 import FavouriteContextProvider from "./contexts/FavouriteContext";
+import Home from "./pages/Home";
+import UserPage from "./pages/UserPage";
 
 function App() {
   return (
@@ -13,8 +15,8 @@ function App() {
           <RadioContextProvider>
             <FavouriteContextProvider>
               <Navbar />
-              <h1>This is .App calling...</h1>
-              <button>En knapp</button>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/user" component={UserPage} />
             </FavouriteContextProvider>
           </RadioContextProvider>
         </UserContextProvider>
