@@ -42,9 +42,12 @@
   justify-content: space-between;
   align-items: center;
 }
-.linkWrapper a {
+.linkWrapper a, .linkWrapper p {
   margin-left: 1rem;
 }
-.linkWrapper a:hover {
+.linkWrapper a:hover, .linkWrapper p:hover {
   color: #859448;
+}
+.linkWrapper p {
+  cursor: pointer;
 }
