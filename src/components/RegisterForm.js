@@ -15,6 +15,7 @@ const RegisterForm = () => {
   const containDigitRegex = /\d/;
   const numberOfCharsRegex = /^.{6,}$/;
   const capLetterRegex = /[A-Z]/;
+  const notCapLetterRegex = /[a-z]/;
   const whitespaceRegex = /\s/;
   const specCharsRegex = /[^a-zA-Z0-9]/;
 
@@ -24,6 +25,7 @@ const RegisterForm = () => {
     if (containDigitRegex.test(e.target.value)) passwordRequirements.digit = true;
     if (numberOfCharsRegex.test(e.target.value)) passwordRequirements.numberChars = true;
     if (capLetterRegex.test(e.target.value)) passwordRequirements.capLetter = true;
+    if (notCapLetterRegex.test(e.target.value)) passwordRequirements.notCapLetter = true;
     if (!whitespaceRegex.test(e.target.value)) passwordRequirements.noWhitespace = true;
     if (specCharsRegex.test(e.target.value)) passwordRequirements.specChars = true;
     setPasswordCheck(passwordRequirements);
@@ -79,7 +81,8 @@ const RegisterForm = () => {
           <div className={styles.answersWrapper}>
             <p className={passwordCheck.numberChars ? styles.fulfilled : styles.notOK}>Minst 6 tecken</p>
             <p className={passwordCheck.digit ? styles.fulfilled : styles.notOK}>Minst en siffra</p>
-            <p className={passwordCheck.capLetter ? styles.fulfilled : styles.notOK}>Minst en stor bokstav</p>
+            <p className={passwordCheck.notCapLetter ? styles.fulfilled : styles.notOK}>Minst en gemen</p>
+            <p className={passwordCheck.capLetter ? styles.fulfilled : styles.notOK}>Minst en versal</p>
             <p className={passwordCheck.specChars ? styles.fulfilled : styles.notOK}>Minst ett specialtecken</p>
             <p className={passwordCheck.noWhitespace ? styles.fulfilled : styles.notOK}>Inget mellanslag</p>
           </div>
