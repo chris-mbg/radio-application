@@ -1,4 +1,8 @@
+.registerForm h2 {
+  display: inline-block;
+}
 .registerForm form {
+  max-width: 600px;
   display: flex;
   flex-flow: column nowrap;
 }
@@ -8,13 +12,12 @@
 .passwordCheckContainer {
   font-size: 0.8rem;
   margin: 0 auto;
-  width: 70%;
+  width: 80%;
 }
 .answersWrapper {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 50%;
   margin: 0 auto;
 }
 .answersWrapper p {
