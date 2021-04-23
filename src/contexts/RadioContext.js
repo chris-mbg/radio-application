@@ -1,10 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 export const RadioContext = createContext();
 
 const RadioContextProvider = (props) => {
-  const history = useHistory();
 
   const [allChannels, setAllChannels] = useState(null);
   const [singleChannel, setSingleChannel] = useState(null);
@@ -40,6 +38,29 @@ const RadioContextProvider = (props) => {
     return programList;
   };
 
+  const fetchProgramsForChannel = async channelId => {
+    let programList = await fetch(`/api/v1/programs/channel/${channelId}`);
+    programList = await programList.json();
+    return programList;
+  }
+
+  const fetchProgramInfo = async programId => {
+    let programInfo = await fetch(`/api/v1/programs/${programId}`);
+    programInfo = await programInfo.json();
+    return programInfo;
+  }
+
+  const fetchProgramSchedule = async programId => {
+    let programSchedule = await fetch(`/api/v1/programs/schedule/${programId}`);
+    programSchedule = await programSchedule.json();
+    return programSchedule;
+  }
+
+  const fetchAllEpisodesForProgram = async programId => {
+    let episodeList = await fetch(`/api/v1/episodes/${programId}`);
+    episodeList = await episodeList.json();
+    return episodeList;
+  }
 
   useEffect(() => {
     fetchAllChannels();
@@ -53,7 +74,10 @@ const RadioContextProvider = (props) => {
     fetchChannelSchedule,
     allCategories,
     fetchProgramsInCat,
-    
+    fetchProgramsForChannel,
+    fetchProgramInfo,
+    fetchProgramSchedule,
+    fetchAllEpisodesForProgram,
   };
 
   return (
