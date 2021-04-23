@@ -5,6 +5,7 @@ const sqlite3 = require("sqlite3");
 const db = new sqlite3.Database(path.join(__dirname, "../radioAppDB.db"));
 
 const whoami = (req, res) => {
+  console.log('From whoami', req.session.user);
   res.json(req.session.user || null);
 };
 
@@ -97,6 +98,7 @@ const registerNewUser = (req, res) => {
             } else {
               delete newUser.password;
               req.session.user = newUser;
+              console.log('Req.session.user', req.session.user);
               res.json({
                 success: "User registered and logged in.",
                 lastID: this.lastID,

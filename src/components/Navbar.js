@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className={styles.linkWrapper}>
         {
         userLoggedIn ?
-          <NavLink to="/user"><i class="fas fa-user fa-lg"></i></NavLink>
+          <NavLink to="/user"><i className="fas fa-user fa-lg"></i></NavLink>
           :
           (<div>
             <p onClick={toggleModal}>Logga in/Registrera</p>

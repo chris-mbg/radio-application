@@ -44,7 +44,7 @@ const RegisterForm = () => {
         lastName,
         password,
       };
-      //registerNewUser(newUser)
+      registerNewUser(newUser);
     }
   };
 
