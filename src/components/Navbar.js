@@ -10,6 +10,10 @@ const Navbar = () => {
   const { userLoggedIn, logoutUser } = useContext(UserContext);
   const { isVisible, toggleModal } = useModal();
 
+  const handleLogout = () => {
+    logoutUser();
+  }
+
   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={`${styles.navlink} ${styles.navLogoWrapper}`}>
@@ -18,11 +22,10 @@ const Navbar = () => {
           <img className={styles.radioIcon} src="./assets/icons/radio-icon-2.svg" alt="radio icon"/>
         {/* </div> */}
       </NavLink>
+        {/* <button onClick={handleLogout}>Logga ut</button> */}
       <div className={styles.linkWrapper}>
-        <button onClick={logoutUser}>Logga ut</button>
-        {
-        userLoggedIn ?
-          <NavLink to="/user"><i className="fas fa-user fa-lg"></i></NavLink>
+        {userLoggedIn ?
+          (<NavLink to="/user"><i className="fas fa-user fa-lg"></i></NavLink>)
           :
           (<div>
             <p onClick={toggleModal}>Logga in/Registrera</p>
