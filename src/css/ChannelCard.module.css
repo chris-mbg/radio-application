@@ -1,0 +1,24 @@
+.channelCard {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 #00000033;
+  transition: 0.3s;
+  width: 400px;
+  height: 100px;
+  overflow: hidden;
+  margin: 1rem;
+  background-color: #251e18;
+  cursor: pointer;
+}
+
+.channelCard:hover {
+  box-shadow: 0 8px 16px 0 #f75A0d33;
+}
+
+.imgContainer {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.imgContainer img {
+  max-width: 100%;
+}

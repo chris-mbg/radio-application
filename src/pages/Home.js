@@ -1,7 +1,11 @@
+import CardWrapper from '../components/CardWrapper'
+import styles from '../css/Home.module.css'
+
 const Home = () => {
   return (
     <div>
-      <h1>This is HOME calling...</h1>
+      <h1>Välkommen [annan text]</h1>
+      <CardWrapper />
     </div>
   );
 }
