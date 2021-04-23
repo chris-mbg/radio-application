@@ -7,7 +7,7 @@ import RegisterLogInModal from './RegisterLogInModal';
 
 const Navbar = () => {
 
-  const { userLoggedIn } = useContext(UserContext);
+  const { userLoggedIn, logoutUser } = useContext(UserContext);
   const { isVisible, toggleModal } = useModal();
 
   return (
@@ -19,6 +19,7 @@ const Navbar = () => {
         {/* </div> */}
       </NavLink>
       <div className={styles.linkWrapper}>
+        <button onClick={logoutUser}>Logga ut</button>
         {
         userLoggedIn ?
           <NavLink to="/user"><i className="fas fa-user fa-lg"></i></NavLink>
