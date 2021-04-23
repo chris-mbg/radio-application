@@ -220,7 +220,6 @@ const saveFavouriteToUser = (req, res) => {
     };
     db.run(query, params, function (err, result) {
       if (err) {
-
         res.status(400).json({ error: err });
         return;
       } else {
