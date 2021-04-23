@@ -108,7 +108,9 @@ const UserContextProvider = (props) => {
   };
 
   return (
-    <UserContext.Provider value={values}>{props.children}</UserContext.Provider>
+    <UserContext.Provider value={values}>
+      {props.children}
+    </UserContext.Provider>
   );
 };
 
