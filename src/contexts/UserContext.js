@@ -42,6 +42,7 @@ const UserContextProvider = (props) => {
       return { error: "Wrong email or password!" };
     } else if (result.success) {
       loggedInCheck();
+      return {};
     }
   };
 
