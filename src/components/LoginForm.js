@@ -8,13 +8,18 @@ const LoginForm = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [notFound, setNotFound] = useState(false);
 
-  const handleLogInSubmit = e => {
+  const handleLogInSubmit = async e => {
     e.preventDefault();
-    logInUser({
+    let login = await logInUser({
       email,
       password
-    })
+    });
+    if(login.error) {
+      setNotFound(true);
+      setTimeout(() => setNotFound(false), 3000)
+    }
   };
 
   return (
@@ -35,6 +40,7 @@ const LoginForm = () => {
           />
           <button type="submit">Logga in</button>
         </form>
+        {notFound ? (<div><p className={styles.wrong}>Fel e-mail eller lösenord</p></div>) : null }
       </div>
   );
 }

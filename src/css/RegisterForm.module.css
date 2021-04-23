@@ -24,7 +24,7 @@
   margin: 0.5rem;
 }
 .notOK {
-  color: #f34508;
+  color: #f24607;
 }
 .notOK::before {
   display: inline-block;

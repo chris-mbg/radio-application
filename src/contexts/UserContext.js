@@ -39,7 +39,7 @@ const UserContextProvider = (props) => {
     });
     result = await result.json();
     if (result.error) {
-      alert("Wrong email or password!");
+      return { error: "Wrong email or password!" };
     } else if (result.success) {
       loggedInCheck();
     }
