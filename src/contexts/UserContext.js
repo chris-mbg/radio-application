@@ -92,19 +92,9 @@ const UserContextProvider = (props) => {
     });
     result = await result.json();
     if (result.success) {
-
+      getUserById(userLoggedIn.userId)
+      return result
     }
-
-    /* let result = await fetch(`/api/v1/blogs/${postToEdit.blogId}`, {
-      method: 'PUT',
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(postToEdit)
-    });
-    result = await result.json();
-    await fetchAllBlogPosts();
-    return result; */
   };
 
   const values = {
