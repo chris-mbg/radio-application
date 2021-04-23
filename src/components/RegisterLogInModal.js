@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import styles from "../css/RegisterLogInModal.module.css";
+import RegisterForm from "./RegisterForm";
 
 const RegisterLogInModal = ({ isVisible, hideModal }) => {
 
@@ -11,7 +12,8 @@ const RegisterLogInModal = ({ isVisible, hideModal }) => {
         <div className={styles.closeButtonContainer} onClick={hideModal}>
           <button className={styles.closeButton}>X</button>
         </div>
-        {/* Register and login components here! */}
+        {/* Login components here! */}
+        <RegisterForm />
       </div>,
       placement
     ) : null
