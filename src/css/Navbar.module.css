@@ -4,12 +4,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1rem;
+  font-family: 'Josefin Sans', sans-serif;
   /* width: 100%; */
 }
 .navbar a {
   text-decoration: none;
   color: #f5f5fa;
   font-weight: 500;
+
 }
 .navLogoWrapper {
   display: flex;
@@ -18,11 +20,8 @@
 }
 .navLogo {
   color: #f34508;
-  font-family: 'Josefin Sans', sans-serif;
-  /* text-shadow: 2px 2px #3d362b; */
   letter-spacing: 2px;
   font-size: 2rem;
-  /* line-height: 3rem; */
   margin: 0 1rem 0 0;
 }
 .radioIconWrapper {
