@@ -50,7 +50,7 @@ const RegisterForm = () => {
 
   return (
     <div className={styles.registerForm}>
-      <h2>Registera dig här!</h2>
+      <h2>Registera</h2>
       <form onSubmit={(e) => handleRegSubmit(e)}>
         <input
           type="email"
