@@ -25,15 +25,34 @@ const FavouriteContextProvider = (props) => {
         body: JSON.stringify(favouriteInfo),
       });
       result = await result.json();
+      if (result.success) {
+        getAllUserFavourites();
+      }
       return result;
   };
 
+  const deleteUserFavourite = async favouriteId => {
+    let result = await fetch("/api/v1/users/favourites", {
+      method: "DELETE",
+      headers: {
+      "content-type": "application/json",
+      },
+      body: JSON.stringify(favouriteId)
+    });
+    result = await result.json();
+    if(result.success) {
+      getAllUserFavourites();
+    }
+  }
 
-  useEffect(() => getAllUserFavourites(), [userLoggedIn]);
+  useEffect(() => {
+    if(userLoggedIn) getAllUserFavourites();
+  }, [userLoggedIn]);
 
   const values = {
     userFavourites,
-    addUserFavourite
+    addUserFavourite,
+    deleteUserFavourite
   };
 
   return (
