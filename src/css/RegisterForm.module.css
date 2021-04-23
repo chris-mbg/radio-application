@@ -3,11 +3,7 @@
   flex-flow: column nowrap;
 }
 .registerForm input {
-  font-size: 1.3rem;
   margin: 1rem auto;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 5px;
 }
 .passwordCheckContainer {
   font-size: 0.8rem;
