@@ -1,8 +1,9 @@
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import UserContextProvider from "./contexts/UserContext";
 import RadioContextProvider from "./contexts/RadioContext";
+import FavouriteContextProvider from "./contexts/FavouriteContext";
 
 function App() {
   return (
@@ -10,9 +11,11 @@ function App() {
       <Router>
         <UserContextProvider>
           <RadioContextProvider>
-            <Navbar />
-            <h1>This is .App calling...</h1>
-            <button>En knapp</button>
+            <FavouriteContextProvider>
+              <Navbar />
+              <h1>This is .App calling...</h1>
+              <button>En knapp</button>
+            </FavouriteContextProvider>
           </RadioContextProvider>
         </UserContextProvider>
       </Router>
