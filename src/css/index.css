@@ -28,6 +28,12 @@ button:hover {
   box-shadow: 0 0px 20px 2px #f75A0d;
   filter: brightness(1.1);
 }
+input {
+  font-size: 1.3rem;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
 
 .App {
   margin: 0;
