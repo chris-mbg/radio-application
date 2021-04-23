@@ -12,7 +12,7 @@ const getAllChannels = async (req, res) => {
   channelsList = await channelsList.json();
 
   res.json(channelsList.channels);
-  // The response is now just the array with all the channels objects.
+  // The response is now just the array with all the channel objects.
 };
 
 const getChannelById = async (req, res) => {
