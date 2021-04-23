@@ -22,9 +22,12 @@ const UserContextProvider = (props) => {
   useEffect(() => loggedInCheck(), []);
 
   const getUserById = async userId => {
-    let result = await fetch(`/api/v1/users/${userLoggedIn.userId}`);
-    
-  }
+    let result = await fetch(`/api/v1/users/${userId}`);
+    result = await result.json();
+    if(!result.error){
+      return result
+    }
+  };
 
   const logInUser = async (userInput) => {
     let result = await fetch("/api/v1/users/login", {
@@ -110,6 +113,7 @@ const UserContextProvider = (props) => {
     logoutUser,
     deleteUser,
     editUser,
+    getUserById,
   };
 
   return (
