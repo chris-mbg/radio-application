@@ -101,6 +101,7 @@ const UserContextProvider = (props) => {
     userLoggedIn,
     logInUser,
     logoutUser,
+    registerNewUser,
     deleteUser,
     editUser,
     getUserById,
