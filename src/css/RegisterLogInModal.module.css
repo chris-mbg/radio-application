@@ -1,0 +1,23 @@
+.modalContainer {
+  position: absolute;
+  top: 10vh;
+  bottom: 10vh;
+  left: 10vh;
+  right: 10vh;
+  background-color: #aeaeb2d2;
+  text-align: center;
+  color: #251e18;
+  border-radius: 5px;
+}
+
+.closeButtonContainer {
+  position: relative;
+}
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  font-weight: 700;
+}

@@ -1,7 +1,15 @@
-import styles from '../css/Navbar.module.css'
-import { NavLink } from 'react-router-dom'
+import styles from '../css/Navbar.module.css';
+import { NavLink } from 'react-router-dom';
+import useModal from '../hooks/useModal';
+import { UserContext } from '../contexts/UserContext';
+import { useContext } from 'react';
+import RegisterLogInModal from './RegisterLogInModal';
 
 const Navbar = () => {
+
+  const { userLoggedIn } = useContext(UserContext);
+  const { isVisible, toggleModal } = useModal();
+
   return (
     <nav className={styles.navbar}>
       <NavLink to="/" className={`${styles.navlink} ${styles.navLogoWrapper}`}>
@@ -11,8 +19,15 @@ const Navbar = () => {
         {/* </div> */}
       </NavLink>
       <div className={styles.linkWrapper}>
-        <NavLink to="/">Logga in/Registrera</NavLink>
-        <NavLink to="/user"><i class="fas fa-user fa-lg"></i></NavLink>
+        {
+        userLoggedIn ?
+          <NavLink to="/user"><i class="fas fa-user fa-lg"></i></NavLink>
+          :
+          (<div>
+            <p onClick={toggleModal}>Logga in/Registrera</p>
+            <RegisterLogInModal isVisible={isVisible} hideModal={toggleModal} />
+          </div>)
+        }
       </div>
     </nav>
   );
