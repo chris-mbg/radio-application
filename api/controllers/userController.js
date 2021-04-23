@@ -121,7 +121,7 @@ const deleteUserById = (req, res) => {
   if (!userToDelete) {
     res
       .status(400)
-      .send(`The user with id:${req.params.userId} does not exist`);
+      .json( { error: `The user with id:${req.params.userId} does not exist`});
     return;
   }
 
