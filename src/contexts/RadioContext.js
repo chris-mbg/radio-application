@@ -8,14 +8,13 @@ const RadioContextProvider = (props) => {
 
   const [allChannels, setAllChannels] = useState(null);
   const [singleChannel, setSingleChannel] = useState(null);
+  const [allCategories, setAllCategories] = useState(null);
 
   const fetchAllChannels = async () => {
     const allChannelsList = await fetch("/api/v1/channels/");
     allChannelsList = await allChannelsList.json();
     setAllChannels(allChannelsList);
   };
-
-  useEffect(() => fetchAllChannels(), []);
 
   const fetchSingleChannel = async (channelId) => {
     let channelInfo = await fetch(`/api/v1/channels/${channelId}`);
@@ -29,11 +28,32 @@ const RadioContextProvider = (props) => {
     return channelSchedule;
   };
 
+  const fetchAllCategories = async () => {
+    let categoriesList = await fetch("/api/v1/categories/");
+    categoriesList = await categoriesList.json();
+    setAllCategories(categoriesList);
+  };
+
+  const fetchProgramsInCat = async categoryId => {
+    let programList = await fetch(`/api/v1/categories/${categoryId}`);
+    programList = await programList.json();
+    return programList;
+  };
+
+
+  useEffect(() => {
+    fetchAllChannels();
+    fetchAllCategories();
+  }, []);
+
   const values = {
     allChannels,
     singleChannel,
     fetchSingleChannel,
     fetchChannelSchedule,
+    allCategories,
+    fetchProgramsInCat,
+    
   };
 
   return (
