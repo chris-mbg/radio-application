@@ -9,7 +9,7 @@ const RadioContextProvider = (props) => {
   const [allCategories, setAllCategories] = useState(null);
 
   const fetchAllChannels = async () => {
-    const allChannelsList = await fetch("/api/v1/channels/");
+    let allChannelsList = await fetch("/api/v1/channels/");
     allChannelsList = await allChannelsList.json();
     setAllChannels(allChannelsList);
   };
