@@ -1,9 +1,9 @@
-import CategoriesWrapper from "../components/CategoriesWrapper"
+import CategoriesForm from "../components/CategoriesForm";
 
 const Home = () => {
   return (
     <div>
-      <CategoriesWrapper />
+      <CategoriesForm />
     </div>
   );
 }
