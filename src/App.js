@@ -6,6 +6,7 @@ import RadioContextProvider from "./contexts/RadioContext";
 import FavouriteContextProvider from "./contexts/FavouriteContext";
 import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
+import ProgramPage from "./pages/ProgramPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <FavouriteContextProvider>
               <Navbar />
               <Route exact path="/" component={Home} />
+              <Route exact path="/program/:programId" component={ProgramPage} />
               <Route exact path="/user" component={UserPage} />
             </FavouriteContextProvider>
           </RadioContextProvider>
