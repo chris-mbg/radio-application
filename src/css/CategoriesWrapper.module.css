@@ -1,0 +1,25 @@
+.categoriesWrapper {
+  background-color: #251e18;
+  border: 1px solid #859448;
+  border-radius: 5px;
+  margin: 1rem;
+  /* max-width: 1300px; */
+}
+.cardWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+/* * COLOR CODES! */
+/*  Nearly black:   #251e18
+    Dark Grey:      #3d362b
+    Darker green    #3a5e27
+    Lighter green   #859448
+    Orange          #f75A0d
+    Red orange      #f34508
+
+    Text colors:
+    Standard: Nearly white  #f5f5fa
+    Disabled: Greyish:      #aeaeb2
+*/

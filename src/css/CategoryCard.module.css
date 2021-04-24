@@ -1,0 +1,33 @@
+.categoryCard {
+  box-shadow: 0 4px 8px 0 #00000033;
+  transition: 0.3s;
+  width: 250px;
+  /* height: 100px; */
+  overflow: hidden;
+  margin: 1rem;
+  background-color:  #3d362b;
+  cursor: pointer;
+}
+.categoryCard:hover {
+  box-shadow: 2px 2px 8px 0 #85944833;
+}
+.categoryCard p {
+  font-family: 'Josefin Sans', sans-serif;
+  color: #859448;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+
+/* * COLOR CODES! */
+/*  Nearly black:   #251e18
+    Dark Grey:      #3d362b
+    Darker green    #3a5e27
+    Lighter green   #859448
+    Orange          #f75A0d
+    Red orange      #f34508
+
+    Text colors:
+    Standard: Nearly white  #f5f5fa
+    Disabled: Greyish:      #aeaeb2
+*/
