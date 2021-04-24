@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { RadioContext } from "../contexts/RadioContext";
 import styles from '../css/CategoryPrograms.module.css';
 
 const CategoryPrograms = ({categoryId}) => {
-
+  const history = useHistory();
   const { fetchProgramsInCat } = useContext(RadioContext);
   const [programList, setProgramList ] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect( async () => {
     if (categoryId !== "0") {
@@ -17,6 +19,7 @@ const CategoryPrograms = ({categoryId}) => {
 
   const handleProgramNameClick = programId => {
     console.log('Clicked on a name', programId);
+    history.push(`/program/${programId}`);
   }
 
   const renderProgramList = () => {
