@@ -6,6 +6,7 @@ import RadioContextProvider from "./contexts/RadioContext";
 import FavouriteContextProvider from "./contexts/FavouriteContext";
 import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
+import ChannelPage from "./pages/ChannelPage";
 import ProgramPage from "./pages/ProgramPage";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/program/:programId" component={ProgramPage} />
               <Route exact path="/user" component={UserPage} />
+              <Route exact path="/channel/:channelId" component={ChannelPage} />
             </FavouriteContextProvider>
           </RadioContextProvider>
         </UserContextProvider>
