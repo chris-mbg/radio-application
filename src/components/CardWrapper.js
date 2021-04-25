@@ -8,10 +8,10 @@ const CardWrapper = () => {
   const { allChannels } = useContext(RadioContext);
   const [showAllChannels, setShowAllChannels] = useState(false);
 
-  // useEffect(()=> console.log(allChannels), [allChannels]);
+  useEffect(()=> console.log(allChannels), [allChannels]);
 
   const renderShortChannelCards = () => {
-    const fewChannels = allChannels.slice(0,6);
+    const fewChannels = allChannels.slice(0,8);
     return (
       <div className={styles.cardWrapper}>
         {fewChannels.map(channel => <ChannelCard channel={channel} key={channel.id} />)}
@@ -29,8 +29,12 @@ const CardWrapper = () => {
 
   return (
     <div className={styles.componentContainer}>
-      <h2>Här är korten</h2>
-      <button className={styles.expandButton} onClick={toggleChannels}>{ showAllChannels ? "Visa färre" : "Visa alla kanaler"}</button>
+      <h2>{ showAllChannels ? "Bläddra bland alla kanaler" : "Populära kanaler" }</h2>
+      <div className={styles.buttonContainer}>
+        <button className={styles.expandButton} onClick={toggleChannels}>
+          { showAllChannels ? "Visa färre" : "Visa alla kanaler"}
+        </button>
+      </div>
       { allChannels ? ( showAllChannels ? renderAllChannelCards() : renderShortChannelCards()) : null }
     </div>
   );

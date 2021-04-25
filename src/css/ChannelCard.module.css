@@ -1,13 +1,16 @@
 .channelCard {
-  /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 #00000033;
   transition: 0.3s;
-  width: 400px;
-  height: 100px;
-  overflow: hidden;
+  width: 300px;
+  height: 90px;
+  /* overflow: hidden; */
   margin: 1rem;
   background-color: #251e18;
   cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
 }
 
 .channelCard:hover {
@@ -15,10 +18,26 @@
 }
 
 .imgContainer {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
+
 }
 .imgContainer img {
   max-width: 100%;
+  border-radius: 5px 0 0 5px;
+}
+.contentContainer {
+  margin-left: 0.5rem;
+  padding-top: 0.6rem;
+  max-width: 190px;
+}
+.type {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+.channelName {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
 }
