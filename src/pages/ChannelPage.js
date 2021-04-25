@@ -26,8 +26,10 @@ const ChannelPage = (props) => {
       <div>
         <h1>{channelInfo.name}</h1>
         <p>{channelInfo.channeltype}</p>
-        <p>{channelInfo.tagline}</p>
-        <img src={channelInfo.image} />
+        <div className={styles.imgWrapper}>
+          <p className={styles.tagline}>{channelInfo.tagline}</p>
+          <img src={channelInfo.image} alt="channel logo"/>
+        </div>
       </div>
       )
   }

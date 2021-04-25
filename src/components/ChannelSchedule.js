@@ -18,9 +18,10 @@ const ChannelSchedule = ({channelId}) => {
   const renderSchedule = () => {
     return (
       <div>
+        <h2>Tablå för {channelSchedule[0].starttimeutc.substr(0,10)}</h2>
         {channelSchedule.map(prog => (
           <div key={prog.starttimeutc}>
-            <p>{prog.starttimeutc} {prog.program.name}</p>
+            <p>Kl {prog.starttimeutc.substr(11,15)} {prog.program.name}</p>
             <p>{prog.description}</p>
             <hr />
           </div>
@@ -30,8 +31,7 @@ const ChannelSchedule = ({channelId}) => {
   }
 
   return (
-    <div>
-      <h1>Kanaltablå!</h1>
+    <div className={styles.channelScheduleContainer}>
       {channelSchedule ? renderSchedule() : null }
     </div>
   );

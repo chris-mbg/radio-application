@@ -1,0 +1,12 @@
+
+.tagline {
+  text-align: center;
+  font-style: italic;
+  max-width: 700px;
+  margin: 1rem auto;
+  line-height: 1.5rem;
+}
+.imgWrapper img {
+  width: 100px;
+  height: 100px;
+}
