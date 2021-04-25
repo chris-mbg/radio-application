@@ -1,30 +1,22 @@
 import { useContext, useEffect, useState } from "react";
+import ChannelSchedule from "../components/ChannelSchedule";
+import ProgramList from "../components/ProgramList";
 import { RadioContext } from "../contexts/RadioContext";
 import styles from "../css/ChannelPage.module.css";
 
 const ChannelPage = (props) => {
   const { channelId } = props.match.params;
-  const { fetchSingleChannel, fetchChannelSchedule } = useContext(RadioContext);
+  const { fetchSingleChannel } = useContext(RadioContext);
   const [channelInfo, setChannelInfo] = useState(null);
-  const [channelSchedule, setChannelSchedule] = useState(null);
+
 
   const fetchData = async (channelId, fetchMethod) => {
     const result = await fetchMethod(channelId);
-    if(result.channeltype) {
-      setChannelInfo(result)
-    } else {
-      setChannelSchedule(result)
-    }
+    setChannelInfo(result);
   };
 
-  useEffect( () => {
-    fetchData(channelId, fetchSingleChannel);
-    fetchData(channelId, fetchChannelSchedule);
-  }, []);
+  useEffect( () => fetchData(channelId, fetchSingleChannel), []);
 
-  useEffect( () => {
-    console.log('Channel Tablå:', channelSchedule);
-  }, [channelSchedule]);
   useEffect( () => {
     console.log('Channel Info:', channelInfo);
   }, [channelInfo]);
@@ -32,8 +24,10 @@ const ChannelPage = (props) => {
   const renderChannelContent = () => {
     return (
       <div>
-        <h1>Kanal: {channelInfo.name}</h1>
+        <h1>{channelInfo.name}</h1>
+        <p>{channelInfo.channeltype}</p>
         <p>{channelInfo.tagline}</p>
+        <img src={channelInfo.image} />
       </div>
       )
   }
@@ -41,6 +35,9 @@ const ChannelPage = (props) => {
   return (
     <div className={styles.channelPageContainer}>
       {channelInfo ? renderChannelContent() : <p>Loading...</p>}
+      <ChannelSchedule channelId={channelId}/>
+      <h2>Alla program</h2>
+      <ProgramList channelId={channelId}/>
     </div>
   );
 };
