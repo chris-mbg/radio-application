@@ -1,8 +1,14 @@
+.componentContainer {
+  margin: 2rem;
+  border: 1px solid white;
+}
+
 .cardWrapper {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   margin: 2rem auto;
-  max-height: 200vh;
-  overflow: scroll;
+  /* max-height: 200vh; */
+  /* overflow: scroll; */
+  border: 1px solid black;
 }

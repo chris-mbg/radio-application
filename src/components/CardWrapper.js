@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { RadioContext } from '../contexts/RadioContext';
 import styles from '../css/CardWrapper.module.css'
 import ChannelCard from './ChannelCard';
@@ -6,21 +6,32 @@ import ChannelCard from './ChannelCard';
 const CardWrapper = () => {
 
   const { allChannels } = useContext(RadioContext);
+  const [showAllChannels, setShowAllChannels] = useState(false);
 
-  useEffect(()=> console.log(allChannels), [allChannels]);
+  // useEffect(()=> console.log(allChannels), [allChannels]);
 
-  const renderChannelCards = () => {
+  const renderShortChannelCards = () => {
+    const fewChannels = allChannels.slice(0,6);
+    return (
+      <div className={styles.cardWrapper}>
+        {fewChannels.map(channel => <ChannelCard channel={channel} key={channel.id} />)}
+      </div>
+    )
+  }
+  const renderAllChannelCards = () => {
     return (
       <div className={styles.cardWrapper}>
         {allChannels.map(channel => <ChannelCard channel={channel} key={channel.id} />)}
       </div>
     )
   }
+  const toggleChannels = () => setShowAllChannels(prevState => !prevState);
 
   return (
     <div className={styles.componentContainer}>
       <h2>Här är korten</h2>
-      { allChannels ? renderChannelCards() : null }
+      <button className={styles.expandButton} onClick={toggleChannels}>{ showAllChannels ? "Visa färre" : "Visa alla kanaler"}</button>
+      { allChannels ? ( showAllChannels ? renderAllChannelCards() : renderShortChannelCards()) : null }
     </div>
   );
 }
