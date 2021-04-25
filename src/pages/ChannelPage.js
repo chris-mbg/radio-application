@@ -10,22 +10,37 @@ const ChannelPage = (props) => {
 
   const fetchData = async (channelId, fetchMethod) => {
     const result = await fetchMethod(channelId);
-    return result;
+    if(result.channeltype) {
+      setChannelInfo(result)
+    } else {
+      setChannelSchedule(result)
+    }
   };
 
   useEffect( () => {
-    setChannelInfo(fetchData(channelId, fetchSingleChannel));
-    setChannelSchedule(fetchData(channelId, fetchChannelSchedule));
+    fetchData(channelId, fetchSingleChannel);
+    fetchData(channelId, fetchChannelSchedule);
   }, []);
 
   useEffect( () => {
-    console.log('Channel Info:', channelInfo);
     console.log('Channel Tablå:', channelSchedule);
-  }, [channelInfo, channelSchedule])
+  }, [channelSchedule]);
+  useEffect( () => {
+    console.log('Channel Info:', channelInfo);
+  }, [channelInfo]);
+
+  const renderChannelContent = () => {
+    return (
+      <div>
+        <h1>Kanal: {channelInfo.name}</h1>
+        <p>{channelInfo.tagline}</p>
+      </div>
+      )
+  }
 
   return (
     <div className={styles.channelPageContainer}>
-      <h1>Här kommer kanal-info!</h1>
+      {channelInfo ? renderChannelContent() : <p>Loading...</p>}
     </div>
   );
 };
