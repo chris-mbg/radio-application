@@ -12,7 +12,7 @@ const CardWrapper = () => {
   const renderChannelCards = () => {
     return (
       <div className={styles.cardWrapper}>
-        {allChannels.map(channel => <ChannelCard channel={channel} key={channel.id}/>)}
+        {allChannels.map(channel => <ChannelCard channel={channel} key={channel.id} />)}
       </div>
     )
   }

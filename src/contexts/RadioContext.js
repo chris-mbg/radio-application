@@ -5,7 +5,6 @@ export const RadioContext = createContext();
 const RadioContextProvider = (props) => {
 
   const [allChannels, setAllChannels] = useState(null);
-  const [singleChannel, setSingleChannel] = useState(null);
   const [allCategories, setAllCategories] = useState(null);
 
   const fetchAllChannels = async () => {
@@ -17,7 +16,7 @@ const RadioContextProvider = (props) => {
   const fetchSingleChannel = async (channelId) => {
     let channelInfo = await fetch(`/api/v1/channels/${channelId}`);
     channelInfo = await channelInfo.json();
-    setSingleChannel(channelInfo);
+    return channelInfo;
   };
 
   const fetchChannelSchedule = async (channelId) => {
@@ -69,7 +68,6 @@ const RadioContextProvider = (props) => {
 
   const values = {
     allChannels,
-    singleChannel,
     fetchSingleChannel,
     fetchChannelSchedule,
     allCategories,
