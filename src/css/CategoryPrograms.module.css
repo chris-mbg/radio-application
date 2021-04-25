@@ -1,0 +1,42 @@
+.programWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  background-color: #251e18;
+  border-radius: 10px;
+  margin: 2rem;
+  padding: 0.5rem;
+}
+.programName {
+  color: #859448;
+  font-weight: 500;
+  margin: 0.4rem;
+  width: 180px;
+  height: 60px;
+  background-color: #3d362b;
+  box-shadow: 2px 2px 8px #85944877;
+  text-align: center;
+  padding: 0.3rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.programName:hover {
+  box-shadow: 4px 4px 10px #85944877;
+  filter: brightness(1.1);
+}
+
+/* * COLOR CODES! */
+/*  Nearly black:   #251e18
+    Dark Grey:      #3d362b
+    Darker green    #3a5e27
+    Lighter green   #859448
+    Orange          #f75A0d
+    Red orange      #f34508
+
+    Text colors:
+    Standard: Nearly white  #f5f5fa
+    Disabled: Greyish:      #aeaeb2
+*/
