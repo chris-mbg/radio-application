@@ -259,7 +259,7 @@ const deleteUserFavourite = (req, res) => {
   let query;
   let params = { $userId: req.session.user.userId };
   if(req.body.channelId) {
-    query = /*sql*/`SELECT * from channel WHERE channelId = $channelId AND userId = $userId`
+    query = /*sql*/`SELECT * from channels WHERE channelId = $channelId AND userId = $userId`
     params.$channelId = req.body.channelId;
     let channelToDelete = db.get(query, params);
     if (!channelToDelete) {
