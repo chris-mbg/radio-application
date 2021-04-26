@@ -10,7 +10,7 @@ const RegisterLogInModal = ({ isVisible, hideModal }) => {
   return isVisible ?
     createPortal(
       <div className={styles.modalContainer}>
-        <div className={styles.closeButtonContainer} onClick={hideModal}>
+        <div className={styles.closeButtonContainer} onClick={() => hideModal()}>
           <button className={styles.closeButton}>X</button>
         </div>
         <div className={styles.contentContainer}>

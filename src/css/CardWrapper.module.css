@@ -4,6 +4,7 @@
   background-color: #251e18;
   border-radius: 5px;
   padding: 1rem;
+  box-shadow: 2px 4px 8px 0 #aeaeb233;
 }
 
 .cardWrapper {

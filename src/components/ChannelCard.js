@@ -11,7 +11,7 @@ const ChannelCard = ({channel}) => {
   return (
     <div className={styles.channelCard} onClick={()=> handleCardClick(channel.id)}>
       <div className={styles.imgContainer}>
-        <img src={channel.image} />
+        <img src={channel.image} alt="" />
       </div>
       <div className={styles.contentContainer}>
         <p className={styles.channelName}>{channel.name}</p>

@@ -17,8 +17,8 @@ const LoginForm = () => {
     });
     if(login.error) {
       setNotFound(true);
-      setTimeout(() => setNotFound(false), 3000)
-    }
+      setTimeout(() => setNotFound(false), 3000);
+    } 
   };
 
   return (

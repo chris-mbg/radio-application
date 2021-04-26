@@ -7,11 +7,12 @@ import RegisterLogInModal from './RegisterLogInModal';
 
 const Navbar = () => {
 
-  const { userLoggedIn, logoutUser } = useContext(UserContext);
+  const { userLoggedIn } = useContext(UserContext);
   const { isVisible, toggleModal } = useModal();
 
-  const handleLogout = () => {
-    logoutUser();
+  const handleModalClick = () => {
+    console.log('Fr Navbar and handleModalClick. isVisible:', isVisible);
+    toggleModal();
   }
 
   return (
@@ -22,16 +23,15 @@ const Navbar = () => {
           <img className={styles.radioIcon} src="./assets/icons/radio-icon-2.svg" alt="radio icon"/>
         {/* </div> */}
       </NavLink>
-        {/* <button onClick={handleLogout}>Logga ut</button> */}
       <div className={styles.linkWrapper}>
         {userLoggedIn ?
           (<NavLink to="/user"><i className="fas fa-user fa-lg"></i></NavLink>)
           :
           (<div>
-            <p onClick={toggleModal}>Logga in/Registrera</p>
-            <RegisterLogInModal isVisible={isVisible} hideModal={toggleModal} />
+            <p onClick={() => handleModalClick()}>Logga in/Registrera</p>
           </div>)
         }
+        <RegisterLogInModal isVisible={isVisible} hideModal={toggleModal} />
       </div>
     </nav>
   );

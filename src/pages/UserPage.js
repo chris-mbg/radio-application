@@ -1,17 +1,33 @@
 import { useEffect } from 'react';
 import { useContext } from "react";
+import UserFavourites from '../components/UserFavourites';
+import UserInfo from '../components/UserInfo';
 import { UserContext } from "../contexts/UserContext";
+import styles from '../css/UserPage.module.css'
 
 const UserPage = () => {
+
   useEffect(() => window.scrollTo(0, 0), []);
-  const { logoutUser } = useContext(UserContext)
-  const handleLogout = () => {
+
+  const { userLoggedIn, logoutUser } = useContext(UserContext);
+
+  const handleLogout = e => {
+    e.stopPropagation();
     logoutUser();
   }
+
   return (
     <div>
-      <h1>This is the user page 😇 </h1>
-      <button onClick={handleLogout}>Logga ut</button>
+      {userLoggedIn ?
+        <div className={styles.logoutButtonWrapper}>
+          <button onClick={handleLogout}>Logga ut</button>
+        </div> : null }
+      {userLoggedIn ? <h1>Hej, {userLoggedIn.userFirstName}!</h1> : <p>Loading...</p>}
+      {userLoggedIn ?
+        <div className={styles.compContainer}>
+          <UserFavourites />
+          <UserInfo />
+        </div> : null }
     </div>
   );
 }
