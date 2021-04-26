@@ -5,33 +5,45 @@ import styles from "../css/ChannelSchedule.module.css";
 const ChannelSchedule = ({channelId}) => {
 
   const [channelSchedule, setChannelSchedule] = useState(null);
+  const [scheduleDate, setScheduleDate] = useState(null);
   const { fetchChannelSchedule } = useContext(RadioContext);
 
-  const fetchData = async (channelId) => {
-    const result = await fetchChannelSchedule(channelId);
+  const handleDateChange = e => {
+    setScheduleDate(e.target.value);
+  }
+
+  const fetchData = async (channelId, date) => {
+    const result = await fetchChannelSchedule(channelId, date);
     setChannelSchedule(result);
   };
 
-  useEffect(() => fetchData(channelId), []);
+  // eslint-disable-next-line
+  useEffect(() => fetchData(channelId, scheduleDate), []);
+  useEffect(() => fetchData(channelId, scheduleDate), [scheduleDate]);
   useEffect(() => console.log('kanaltablå', channelSchedule), [channelSchedule]);
 
   const renderSchedule = () => {
     return (
-      <div>
-        <h2>Tablå för {channelSchedule[0].starttimeutc.substr(0,10)}</h2>
+      <div className={styles.channelScheduleContainer}>
+        <h2>Tablå för {channelSchedule[0].starttimeutc.substring(0,10)}</h2>
+        <div>
+          <label>Ändra datum?</label>
+          <input type="date" onChange={handleDateChange}/>
+        </div>
         {channelSchedule.map(prog => (
-          <div key={prog.starttimeutc}>
-            <p>Kl {prog.starttimeutc.substr(11,15)} {prog.program.name}</p>
-            <p>{prog.description}</p>
-            <hr />
-          </div>
+          prog.program.name ? (
+            <div key={prog.starttimeutc} className={styles.programContainer}>
+              <p>Kl {prog.starttimeutc.substring(11,16)} {prog.program.name} - <span className={styles.desc}>{prog.description}</span>
+              </p>
+
+            </div>) : null
         ))}
       </div>
     )
   }
 
   return (
-    <div className={styles.channelScheduleContainer}>
+    <div className={styles.compContainer}>
       {channelSchedule ? renderSchedule() : null }
     </div>
   );

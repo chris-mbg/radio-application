@@ -15,6 +15,7 @@ const ChannelPage = (props) => {
     setChannelInfo(result);
   };
 
+  // eslint-disable-next-line
   useEffect( () => fetchData(channelId, fetchSingleChannel), []);
 
   useEffect( () => {
@@ -26,10 +27,10 @@ const ChannelPage = (props) => {
       <div>
         <h1>{channelInfo.name}</h1>
         <p>{channelInfo.channeltype}</p>
-        <div className={styles.imgWrapper}>
-          <p className={styles.tagline}>{channelInfo.tagline}</p>
+        <p className={styles.tagline}>{channelInfo.tagline}</p>
+        {/* <div className={styles.imgWrapper}>
           <img src={channelInfo.image} alt="channel logo"/>
-        </div>
+        </div> */}
       </div>
       )
   }
