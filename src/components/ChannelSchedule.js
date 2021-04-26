@@ -24,16 +24,24 @@ const ChannelSchedule = ({channelId}) => {
   useEffect(() => fetchData(channelId, scheduleDate), []);
   // eslint-disable-next-line
   useEffect(() => fetchData(channelId, scheduleDate), [scheduleDate]);
-  //useEffect(() => console.log('kanaltablå', channelSchedule), [channelSchedule]);
+  useEffect(() => console.log('kanaltablå', channelSchedule), [channelSchedule]);
 
-  const handleHeartClick = (episodeId, episodeTitle) => {
-    if(userFavourites) {
-      const alreadyFav = userFavourites.episodes.some(epi => epi.episodeId ===  parseInt(episodeId));
+  const handleHeartClick = (favInfo) => {
+    if(userFavourites && favInfo.episodId) {
+      const alreadyFav = userFavourites.episodes.some(epi => epi.episodeId ===  parseInt(favInfo.episodeId));
       console.log('want to add fav', alreadyFav);
       if(!alreadyFav) {
-        addUserFavourite({ episodeId: episodeId, episodeTitle: episodeTitle });
+        addUserFavourite(favInfo);
       } else {
-        deleteUserFavourite({ episodeId: episodeId});
+        deleteUserFavourite({ episodeId: favInfo.episodeId});
+      }
+    } else if (userFavourites && favInfo.programId){
+      const alreadyFav = userFavourites.programs.some(prog => prog.episodeId ===  parseInt(favInfo.programId));
+      console.log('want to add fav', alreadyFav);
+      if(!alreadyFav) {
+        addUserFavourite(favInfo);
+      } else {
+        deleteUserFavourite({ programId: favInfo.programId});
       }
     } else {
       return
@@ -57,12 +65,19 @@ const ChannelSchedule = ({channelId}) => {
                 <span className={styles.desc}>{prog.description}</span>
               </p>
               <div className={styles.favouriteIconWrapper}>
-                {userFavourites ?
-                  (userFavourites.episodes.some(epi => epi.episodeId === parseInt(prog.episodeid)) ?
-                    (<i onClick={() => handleHeartClick(prog.episodeid, prog.title)} className={`fas fa-heart likeIcon`}></i>)
+                {userFavourites && userFavourites.episodes.map(episode => (
+                  prog.episodeid ?
+                    (episode.episodeId === parseInt(prog.episodeid)) ?
+                      (<i onClick={() => handleHeartClick({episodeId: prog.episodeid, episodeTitle: prog.title})} className={`fas fa-heart likeIcon`}></i>)
                     :
-                    (<i onClick={() => handleHeartClick(prog.episodeid, prog.title)} className={`far fa-heart likeIcon`}></i>))
-                : null
+                      (<i onClick={() => handleHeartClick({episodeId: prog.episodeid, episodeTitle: prog.title})} className={`far fa-heart likeIcon`}></i>)
+                  :
+                    (userFavourites.programs.some(favProg => favProg.programId ===  parseInt(prog.program.id)) ?
+                      (<i onClick={() => handleHeartClick({programId: prog.program.id, programName: prog.program.name})} className={`fas fa-heart likeIcon`}></i>)
+                    :
+                      (<i onClick={() => handleHeartClick({programId: prog.program.id, programName: prog.program.name})} className={`far fa-heart likeIcon`}></i>)
+                    )
+                ))
                 }
               </div>
             </div>
