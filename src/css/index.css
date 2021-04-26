@@ -32,6 +32,12 @@ button:hover {
 button:active, button:focus {
   outline: none;
 }
+input {
+  font-size: 1.3rem;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
 
 input {
   border: none;

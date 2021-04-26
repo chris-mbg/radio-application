@@ -1,5 +1,7 @@
 import { createPortal } from "react-dom";
 import styles from "../css/RegisterLogInModal.module.css";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
 const RegisterLogInModal = ({ isVisible, hideModal }) => {
 
@@ -11,7 +13,13 @@ const RegisterLogInModal = ({ isVisible, hideModal }) => {
         <div className={styles.closeButtonContainer} onClick={hideModal}>
           <button className={styles.closeButton}>X</button>
         </div>
-        {/* Register and login components here! */}
+        <div className={styles.contentContainer}>
+          <h1>Logga in på ditt konto, eller registrera dig som ny användare här.</h1>
+          <div className={styles.componentsContainer}>
+            <LoginForm />
+            <RegisterForm />
+          </div>
+        </div>
       </div>,
       placement
     ) : null
