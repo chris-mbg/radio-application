@@ -25,11 +25,12 @@ const ChannelSchedule = ({channelId}) => {
   const renderSchedule = () => {
     return (
       <div className={styles.channelScheduleContainer}>
-        <h2>Tablå för {channelSchedule[0].starttimeutc.substring(0,10)}</h2>
-        <div>
+        <div className={styles.datePickWrapper}>
           <label>Ändra datum?</label>
+          <br />
           <input type="date" onChange={handleDateChange}/>
         </div>
+        <h2>Tablå för {channelSchedule[0].starttimeutc.substring(0,10)}</h2>
         {channelSchedule.map(prog => (
           prog.program.name ? (
             <div key={prog.starttimeutc} className={styles.programContainer}>

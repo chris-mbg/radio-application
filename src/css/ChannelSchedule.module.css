@@ -5,6 +5,14 @@
   overflow-y: scroll;
   padding: 0 1rem;
 }
+.datePickWrapper {
+  text-align: right;
+  margin-bottom: 2rem;
+}
+.datePickWrapper label {
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
 .programContainer {
   border-bottom: 1px solid #aeaeb2;
 }

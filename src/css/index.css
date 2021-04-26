@@ -33,6 +33,12 @@ button:active, button:focus {
   outline: none;
 }
 
+input {
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem;
+}
+
 .App {
   margin: 0;
   background-color: #3d362b;
