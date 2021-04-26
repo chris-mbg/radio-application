@@ -13,8 +13,10 @@ const ChannelCard = ({channel}) => {
       <div className={styles.imgContainer}>
         <img src={channel.image} />
       </div>
-      <p>{channel.name}</p>
-      <p>{channel.tagline}</p>
+      <div className={styles.contentContainer}>
+        <p className={styles.channelName}>{channel.name}</p>
+        <p className={styles.type}>{channel.channeltype}</p>
+      </div>
     </div>
   );
 }

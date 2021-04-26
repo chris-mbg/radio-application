@@ -3,7 +3,6 @@ import { createContext, useEffect, useState } from "react";
 export const RadioContext = createContext();
 
 const RadioContextProvider = (props) => {
-
   const [allChannels, setAllChannels] = useState(null);
   const [allCategories, setAllCategories] = useState(null);
 
@@ -19,8 +18,8 @@ const RadioContextProvider = (props) => {
     return channelInfo;
   };
 
-  const fetchChannelSchedule = async (channelId) => {
-    let channelSchedule = await fetch(`/api/v1/channels/schedule/${channelId}`);
+  const fetchChannelSchedule = async (channelId, date = null) => {
+    let channelSchedule = await fetch(`/api/v1/channels/schedule/${channelId}?date=${date}`);
     channelSchedule = await channelSchedule.json();
     return channelSchedule;
   };
@@ -31,35 +30,37 @@ const RadioContextProvider = (props) => {
     setAllCategories(categoriesList);
   };
 
-  const fetchProgramsInCat = async categoryId => {
+  const fetchProgramsInCat = async (categoryId) => {
     let programList = await fetch(`/api/v1/categories/${categoryId}`);
     programList = await programList.json();
     return programList;
   };
 
-  const fetchProgramsForChannel = async channelId => {
+  const fetchProgramsForChannel = async (channelId) => {
     let programList = await fetch(`/api/v1/programs/channel/${channelId}`);
     programList = await programList.json();
     return programList;
-  }
+  };
 
-  const fetchProgramInfo = async programId => {
+  const fetchProgramInfo = async (programId) => {
     let programInfo = await fetch(`/api/v1/programs/${programId}`);
     programInfo = await programInfo.json();
     return programInfo;
-  }
+  };
 
-  const fetchProgramSchedule = async programId => {
-    let programSchedule = await fetch(`/api/v1/programs/schedule/${programId}`);
+  const fetchProgramSchedule = async (programId) => {
+    let programSchedule = await fetch(
+      `/api/v1/programs/schedule/${programId}`
+    );
     programSchedule = await programSchedule.json();
     return programSchedule;
-  }
+  };
 
-  const fetchAllEpisodesForProgram = async programId => {
+  const fetchAllEpisodesForProgram = async (programId) => {
     let episodeList = await fetch(`/api/v1/episodes/${programId}`);
     episodeList = await episodeList.json();
     return episodeList;
-  }
+  };
 
   useEffect(() => {
     fetchAllChannels();

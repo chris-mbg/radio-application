@@ -17,11 +17,14 @@ const ProgramPage = props => {
       fetchData();
   }, []);
 
+  useEffect(() => window.scrollTo(0, 0), []);
+
   const renderProgramInfo = () => {
     return (
       <div>
         <h1>{programInfo.name}</h1>
         <p>{programInfo.channel.name}</p>
+        <button>Favoritmarkera program</button>
         <p>{programInfo.description}</p>
         <img src={programInfo.programimage} />
       </div>
