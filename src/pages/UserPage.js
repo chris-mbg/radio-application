@@ -1,10 +1,10 @@
+import { useEffect } from 'react';
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
-
 const UserPage = () => {
+  useEffect(() => window.scrollTo(0, 0), []);
   const { logoutUser } = useContext(UserContext)
-
   const handleLogout = () => {
     logoutUser();
   }
