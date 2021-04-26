@@ -32,6 +32,7 @@ const ProgramList = ({ channelId }) => {
 
   return (
     <div className={styles.programListContainer}>
+      {programList ? (<h2>Alla program i {programList[0].channel.name}</h2>) : null }
       {programList ? renderProgramList() : null}
     </div>
   );

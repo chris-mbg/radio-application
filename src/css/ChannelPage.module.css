@@ -1,4 +1,7 @@
-
+.pageCompContainer {
+  display: flex;
+  flex-flow: row wrap;
+}
 .tagline {
   text-align: center;
   font-style: italic;

@@ -1,5 +1,5 @@
 .channelScheduleContainer {
-  max-width: 500px;
+  max-width: 600px;
   margin: 2rem 1rem;
   max-height: 150vh;
   overflow-y: scroll;
@@ -15,6 +15,9 @@
 }
 .programContainer {
   border-bottom: 1px solid #aeaeb2;
+}
+.programContainer span.programName {
+  cursor: pointer;
 }
 
 span.desc {

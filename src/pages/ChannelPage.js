@@ -26,6 +26,7 @@ const ChannelPage = (props) => {
     return (
       <div>
         <h1>{channelInfo.name}</h1>
+        <button>Favoritmarkera kanal</button>
         <p>{channelInfo.channeltype}</p>
         <p className={styles.tagline}>{channelInfo.tagline}</p>
         {/* <div className={styles.imgWrapper}>
@@ -38,9 +39,10 @@ const ChannelPage = (props) => {
   return (
     <div className={styles.channelPageContainer}>
       {channelInfo ? renderChannelContent() : <p>Loading...</p>}
-      <ChannelSchedule channelId={channelId}/>
-      <h2>Alla program</h2>
-      <ProgramList channelId={channelId}/>
+      <div className={styles.pageCompContainer}>
+        <ChannelSchedule channelId={channelId}/>
+        <ProgramList channelId={channelId}/>
+      </div>
     </div>
   );
 };

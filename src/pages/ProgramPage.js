@@ -22,6 +22,7 @@ const ProgramPage = props => {
       <div>
         <h1>{programInfo.name}</h1>
         <p>{programInfo.channel.name}</p>
+        <button>Favoritmarkera program</button>
         <p>{programInfo.description}</p>
         <img src={programInfo.programimage} />
       </div>
