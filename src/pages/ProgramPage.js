@@ -17,6 +17,8 @@ const ProgramPage = props => {
       fetchData();
   }, []);
 
+  useEffect(() => window.scrollTo(0, 0), []);
+
   const renderProgramInfo = () => {
     return (
       <div>

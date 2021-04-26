@@ -17,6 +17,7 @@ const ChannelPage = (props) => {
 
   // eslint-disable-next-line
   useEffect( () => fetchData(channelId, fetchSingleChannel), []);
+  useEffect(() => window.scrollTo(0, 0), []);
 
   useEffect( () => {
     console.log('Channel Info:', channelInfo);
