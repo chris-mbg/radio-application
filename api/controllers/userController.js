@@ -45,7 +45,7 @@ const getUserById = (req, res) => {
       return
     } else {
       delete user.password
-      res.json(user)
+      res.json(user);
     }
   });
 }
@@ -197,6 +197,7 @@ const getAllSavedFavouritesForUser = (req, res) => {
 };
 
 const saveFavouriteToUser = (req, res) => {
+  console.log('From saveFavToUser. session-user:', req.session.user);
   if (req.body.channelId) {
     let query = /*sql*/ `INSERT INTO channels (channelId, channelName, userId) VALUES ($channelId, $channelName, $userId)`;
     let params = {
@@ -206,6 +207,7 @@ const saveFavouriteToUser = (req, res) => {
     };
     db.run(query, params, function (err, result) {
       if (err) {
+        console.log(err)
         res.status(400).json({ error: err });
         return;
       } else {

@@ -30,7 +30,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     secure: "auto",
-    maxAge: 1000 * 60 * 60    // Expires after 60 min, with this setting
+    //maxAge: (1000*60*60)   // Expires after 60 min, with this setting
   }
 }));
 
@@ -41,8 +41,8 @@ app.use(episodePrefix, episodeRoutes);
 app.use(userPrefix, userRoutes);
 
 // The build folder is now avaliable for the backend. Can run the application via the backend
-//app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.listen(port, err => {
-  err ? console.log('Server could not start, error: ', err) : console.log('Listening on port: ', port);
+  err ? console.log('Server could not start, error: ', err) : console.log('Listening on port:', port);
 });
