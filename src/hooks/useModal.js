@@ -7,6 +7,9 @@ const useModal = () => {
   const toggleModal = () => {
     setIsVisible(prevState => !prevState);
   }
+
+  console.log('From useModal, file is run');
+
   return {
     isVisible,
     toggleModal

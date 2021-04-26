@@ -1,13 +1,15 @@
 .modalContainer {
   position: absolute;
   top: 10vh;
-  bottom: 10vh;
-  left: 20vh;
-  right: 20vh;
+  /* bottom: 10vh; */
+  left: 10vh;
+  right: 10vh;
+  /* max-height: 800px; */
   background-color: #aeaeb2f8;
   text-align: center;
   color: #251e18;
   border-radius: 5px;
+  padding-bottom: 5rem;
   /* overflow: scroll; */
 }
 
