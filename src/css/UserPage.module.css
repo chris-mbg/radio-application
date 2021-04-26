@@ -1,13 +1,13 @@
-.deleteButtonWrapper {
+.logoutButtonWrapper {
   text-align: right;
   margin: 1rem 2rem;
 }
-.deleteButtonWrapper button {
+.logoutButtonWrapper button {
   width: 80px;
   background-color: #859448;
 }
 
-.deleteButtonWrapper button:hover {
+.logoutButtonWrapper button:hover {
   box-shadow: 0 0px 20px 2px #859448;
   filter: brightness(1.0);
 }

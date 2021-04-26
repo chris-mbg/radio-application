@@ -29,9 +29,9 @@ const Navbar = () => {
           :
           (<div>
             <p onClick={() => handleModalClick()}>Logga in/Registrera</p>
-            <RegisterLogInModal isVisible={isVisible} hideModal={toggleModal} />
           </div>)
         }
+        <RegisterLogInModal isVisible={isVisible} hideModal={toggleModal} />
       </div>
     </nav>
   );

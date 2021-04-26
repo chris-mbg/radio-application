@@ -15,7 +15,7 @@ const CategoriesForm = () => {
   }
 
   return (
-    <div>
+    <div className={styles.categoriesFormContainer}>
       <h2>Hitta program efter kategori[annan text...]</h2>
       <select onChange={handleCatChoice}>
         <option value="0">Välj en kategori</option>

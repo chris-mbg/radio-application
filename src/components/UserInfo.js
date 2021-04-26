@@ -1,35 +1,63 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
-import styles from '../css/UserInfo.module.css';
+import styles from "../css/UserInfo.module.css";
 
 const UserInfo = () => {
+  const { userLoggedIn, editUser, deleteUser, loggedInCheck } = useContext(UserContext);
+  const [editModeOn, setEditModeOn] = useState(false);
+  const [email, setEmail] = useState(null);
 
-  const { userLoggedIn, editUser, deleteUser } = useContext(UserContext);
+  useEffect(() => {
+    if (userLoggedIn) setEmail(userLoggedIn.userEmail);
+  }, [userLoggedIn]);
+
+  const toggleEditMode = () => setEditModeOn((prevState) => !prevState);
+
   const handleDeleteClick = () => {
-    console.log('Vill bli raderad. userId:', userLoggedIn.userId);
-    //deleteUser(userLoggedIn.userId);
-  }
+    console.log("Vill bli raderad. userId:", userLoggedIn.userId);
+    deleteUser(userLoggedIn.userId);
+  };
 
-  const handleEditClick = () => {
-    console.log('Vill bli editerad. userId:', userLoggedIn.userId);
-    //editUser(userLoggedIn.userId);
-  }
-
+  const handleEditSubmit = async () => {
+    let result = await editUser({ email: email });
+    if(result.success) {
+      
+    }
+  };
 
   return (
-    <div>
-      {userLoggedIn ?
-        (<div>
+    <div className={styles.userInfoContainer}>
+      {userLoggedIn ? (
+        <div className={styles.deleteButtonWrapper}>
+          <button onClick={handleDeleteClick}>Ta bort konto</button>
+        </div>
+      ) : null}
+      {userLoggedIn ? (
+        <div>
           <h2>Användaruppgifter</h2>
-          <p>{userLoggedIn.userFirstName}</p>
-          <p>{userLoggedIn.userLastName}</p>
-          <p>{userLoggedIn.userEmail}</p>
-        </div>)
-      : null }
-      { userLoggedIn ? <button onClick={handleEditClick}>Ändra uppgifter</button> : null }
-      { userLoggedIn ? <button onClick={handleDeleteClick}>Ta bort konto</button> : null }
+          <p>
+            Namn: {userLoggedIn.userFirstName} {userLoggedIn.userLastName}
+          </p>
+          <p>E-mail: {userLoggedIn.userEmail}</p>
+        </div>
+      ) : null}
+      {userLoggedIn ? (
+        <button onClick={() => toggleEditMode()}>Ändra e-mail</button>
+      ) : null}
+      {editModeOn ? (
+        <div>
+          <form onSubmit={handleEditSubmit}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <button type="submit">Bekräfta ändring</button>
+          </form>
+        </div>
+      ) : null}
     </div>
   );
-}
+};
 
 export default UserInfo;

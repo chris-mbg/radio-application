@@ -124,6 +124,7 @@ const editUserById = (req, res) => {
       console.log("Error in edit:", err);
       res.json({ error: err });
     } else {
+      req.session.user.email = req.body.email;
       res.json({ success: "User info updated", changes: this.changes });
     }
   });
@@ -147,6 +148,7 @@ const deleteUserById = (req, res) => {
       res.json({ error: err });
     } else {
       delete req.session.user;
+      console.log('In delete user', req.session.user);
       res.json({ success: "User deleted", changes: this.changes });
     }
   });

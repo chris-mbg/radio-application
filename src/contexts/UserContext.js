@@ -10,6 +10,7 @@ const UserContextProvider = (props) => {
   const loggedInCheck = async () => {
     let result = await fetch("/api/v1/users/whoami");
     result = await result.json();
+    console.log('In loggedincheck', result);
     if (result) {
       console.log("Someone is logged in", result);
       setUserLoggedIn({
@@ -18,6 +19,8 @@ const UserContextProvider = (props) => {
         userFirstName: result.firstName,
         userLastName: result.lastName
       });
+    } else {
+      setUserLoggedIn(null);
     }
   };
 
@@ -94,8 +97,10 @@ const UserContextProvider = (props) => {
       body: JSON.stringify(userToEditInput),
     });
     result = await result.json();
+    console.log('EditUser in UserContext', result);
     if (result.success) {
-      getUserById(userLoggedIn.userId)
+      //getUserById(userLoggedIn.userId)
+      loggedInCheck();
       return result
     }
   };
