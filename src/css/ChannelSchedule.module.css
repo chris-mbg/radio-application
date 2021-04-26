@@ -15,6 +15,14 @@
 }
 .programContainer {
   border-bottom: 1px solid #aeaeb2;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.favouriteIconWrapper {
+  text-align: right;
+  margin-left: 1rem;
 }
 .programContainer span.programName {
   cursor: pointer;
