@@ -14,7 +14,9 @@ const UserContextProvider = (props) => {
       console.log("Someone is logged in", result);
       setUserLoggedIn({
         userEmail: result.email,
-        userId: result.userId
+        userId: result.userId,
+        userFirstName: result.firstName,
+        userLastName: result.lastName
       });
     }
   };

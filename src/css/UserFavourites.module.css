@@ -1,0 +1,20 @@
+.userFavContainer {
+  background-color: #251e18;
+  border-radius: 5px;
+  margin: 2rem;
+  padding: 1rem;
+  box-shadow: 2px 3px 8px 0 #aeaeb233;
+}
+
+/* * COLOR CODES! */
+/*  Nearly black:   #251e18
+    Dark Grey:      #3d362b
+    Darker green    #3a5e27
+    Lighter green   #859448
+    Orange          #f75A0d
+    Red orange      #f34508
+
+    Text colors:
+    Standard: Nearly white  #f5f5fa
+    Disabled: Greyish:      #aeaeb2
+*/
