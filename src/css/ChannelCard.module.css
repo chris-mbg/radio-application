@@ -2,15 +2,15 @@
   box-shadow: 0 4px 8px 0 #00000033;
   transition: 0.3s;
   width: 300px;
-  height: 90px;
-  /* overflow: hidden; */
-  margin: 1rem;
+  height: 70px;
+  margin: 0.5rem;
   background-color: #251e18;
   cursor: pointer;
   border-radius: 5px;
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
+  overflow: hidden;
 }
 
 .channelCard:hover {
@@ -23,12 +23,10 @@
 .channelCard.disable:hover {
   box-shadow: none;
 }
-
 .imgContainer {
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
-
 }
 .imgContainer img {
   max-width: 100%;
@@ -47,4 +45,25 @@
   font-size: 1.3rem;
   font-weight: 500;
   margin: 0;
+}
+@media screen and (min-width: 576px) {
+  .channelCard {
+    height: 90px;
+    /* width: 260px; */
+  }
+  .imgContainer {
+    width: 90px;
+    height: 90px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .channelCard {
+    width: 290px;
+  }
+}
+@media screen and (min-width: 992px) {
+
+}
+@media screen and (min-width: 1200px) {
+
 }

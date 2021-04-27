@@ -28,16 +28,25 @@
   bottom: 5px;
   right: 5px;
   padding: 0.5rem;
-  width: 50%;
+  max-width: 50%;
   font-size: 0.8rem;
+  text-align: right;
 }
 @media screen and (min-width: 576px) {
   .hero {
     height: 400px;
   }
+  .heroText h1 {
+    font-size: 3rem;
+  }
 }
 @media screen and (min-width: 992px) {
   .hero {
-    height: 500px;
+    height: 400px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .hero::before {
+    background-position: center;
   }
 }

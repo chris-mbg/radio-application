@@ -1,6 +1,5 @@
 .componentContainer {
-  margin: 2rem;
-  /* border: 1px solid white; */
+  margin: 2rem 0.5rem;
   background-color: #251e18;
   border-radius: 5px;
   padding: 1rem;
@@ -14,20 +13,22 @@
   margin: 2rem auto;
   background-color: #3d362b;
   border-radius: 5px;
-  /* max-height: 200vh; */
-  /* overflow: scroll; */
-  /* border: 1px solid black; */
+  max-width: 1300px;
 }
 .buttonContainer {
   text-align: right;
 }
 .expandButton {
-  margin: 0 2rem;
-  /* background-color: #f75A0d; */
-  width: 150px;
+  margin: 0;
+  width: 130px;
+  height: 30px;
   filter: brightness(0.9)
 }
 .expandButton:hover {
-  /* box-shadow: 0 0px 20px 2px #859448; */
   filter: brightness(1.0);
+}
+@media screen and (min-width: 768px) {
+  .componentContainer {
+    margin: 2rem;
+  }
 }

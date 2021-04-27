@@ -29,12 +29,12 @@ const CardWrapper = () => {
 
   return (
     <div className={styles.componentContainer}>
-      <h2>{ showAllChannels ? "Bläddra bland alla kanaler" : "Populära kanaler" }</h2>
       <div className={styles.buttonContainer}>
         <button className={styles.expandButton} onClick={toggleChannels}>
           { showAllChannels ? "Visa färre" : "Visa alla kanaler"}
         </button>
       </div>
+      <h2>{ showAllChannels ? "Bläddra bland alla kanaler" : "Populära kanaler" }</h2>
       { allChannels ? ( showAllChannels ? renderAllChannelCards() : renderShortChannelCards()) : null }
     </div>
   );
