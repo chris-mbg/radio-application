@@ -20,8 +20,8 @@ function App() {
               <Navbar />
               <Route exact path="/" component={Home} />
               <Route exact path="/program/:programId" component={ProgramPage} />
-              <GuardedRoute exact path="/user" component={UserPage} />
               <Route exact path="/channel/:channelId" component={ChannelPage} />
+              <GuardedRoute exact path="/user" component={UserPage} />
             </FavouriteContextProvider>
           </RadioContextProvider>
         </UserContextProvider>
