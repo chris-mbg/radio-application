@@ -61,20 +61,6 @@ const ChannelSchedule = ({channelId}) => {
                   )
                 : null
                 }
-                {/* {userFavourites && userFavourites.episodes.map(episode => (
-                  prog.episodeid ?
-                    (episode.episodeId === parseInt(prog.episodeid)) ?
-                      (<i onClick={() => handleHeartClick({episodeId: prog.episodeid, episodeTitle: prog.title})} className={`fas fa-heart likeIcon`}></i>)
-                    :
-                      (<i onClick={() => handleHeartClick({episodeId: prog.episodeid, episodeTitle: prog.title})} className={`far fa-heart likeIcon`}></i>)
-                  :
-                    (userFavourites.programs.some(favProg => favProg.programId ===  parseInt(prog.program.id)) ?
-                      (<i onClick={() => handleHeartClick({programId: prog.program.id, programName: prog.program.name})} className={`fas fa-heart likeIcon`}></i>)
-                    :
-                      (<i onClick={() => handleHeartClick({programId: prog.program.id, programName: prog.program.name})} className={`far fa-heart likeIcon`}></i>)
-                    )
-                ))
-                } */}
               </div>
             </div>
           ) : null

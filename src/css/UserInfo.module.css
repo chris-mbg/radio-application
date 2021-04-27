@@ -15,8 +15,36 @@
   top: 0.8rem;
   right: 0.8rem;
   margin: 0;
-  height: 30px;
+  height: 40px;
   width: 100px;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   position: absolute;
+  color: #f75A0d;
+  border: 1px solid #f75A0d;
+  background-color: #3d362b;
+}
+.editButton {
+  margin: 0 1rem;
+  height: auto;
+  width: auto;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.8rem;
+  background-color: #859448;
+}
+.editButton:hover {
+  box-shadow: 0 0px 20px 2px #859448;
+  filter: brightness(1.0);
+}
+.formWrapper {
+  border: 1px solid #859448;
+  display: inline-block;
+  padding: 1rem;
+  border-radius: 5px;
+}
+.formWrapper legend {
+  font-style: italic;
+}
+input.emailInput {
+  font-size: 1rem;
+  padding: 0.2rem;
 }

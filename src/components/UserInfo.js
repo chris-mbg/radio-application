@@ -30,7 +30,7 @@ const UserInfo = () => {
     <div className={styles.userInfoContainer}>
       {userLoggedIn ? (
         <div className={styles.deleteButtonWrapper}>
-          <button onClick={handleDeleteClick}>Ta bort konto</button>
+          <button onClick={handleDeleteClick}>Ta bort konto <i className="fas fa-skull-crossbones"></i></button>
         </div>
       ) : null}
       {userLoggedIn ? (
@@ -39,23 +39,22 @@ const UserInfo = () => {
           <p>
             Namn: {userLoggedIn.userFirstName} {userLoggedIn.userLastName}
           </p>
-          <p>E-mail: {userLoggedIn.userEmail}</p>
+          <p>E-mail: {userLoggedIn.userEmail}<button className={styles.editButton} onClick={() => toggleEditMode()}><i className="fas fa-edit"></i></button></p>
         </div>
       ) : null}
-      {userLoggedIn ? (
-        <button onClick={() => toggleEditMode()}>Ändra e-mail</button>
-      ) : null}
       {editModeOn ? (
-        <div>
+        <fieldset className={styles.formWrapper}>
+          <legend>Skriv in din nya email!</legend>
           <form onSubmit={handleEditSubmit}>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className={styles.emailInput}
             />
-            <button type="submit">Bekräfta ändring</button>
+            <button className={styles.editButton} type="submit">Bekräfta ändring</button>
           </form>
-        </div>
+        </fieldset>
       ) : null}
     </div>
   );

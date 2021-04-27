@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { FavouriteContext } from "../contexts/FavouriteContext";
 import styles from "../css/UserFavourites.module.css";
+import UserFavScheduleWrapper from './UserFavScheduleWrapper'
 
 const UserFavourites = () => {
   const history = useHistory();
@@ -42,6 +43,7 @@ const UserFavourites = () => {
               </div>
             </div>
           )}
+          { userFavourites.channels.length > 0 ? <UserFavScheduleWrapper /> : null}
         </div>
     )
   }
