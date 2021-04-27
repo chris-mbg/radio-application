@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import UserPage from "./pages/UserPage";
 import ChannelPage from "./pages/ChannelPage";
 import ProgramPage from "./pages/ProgramPage";
+import GuardedRoute from "./components/GuardedRoute";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
               <Navbar />
               <Route exact path="/" component={Home} />
               <Route exact path="/program/:programId" component={ProgramPage} />
-              <Route exact path="/user" component={UserPage} />
+              <GuardedRoute exact path="/user" component={UserPage} />
               <Route exact path="/channel/:channelId" component={ChannelPage} />
             </FavouriteContextProvider>
           </RadioContextProvider>
