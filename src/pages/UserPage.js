@@ -25,8 +25,8 @@ const UserPage = () => {
       {userLoggedIn ? <h1>Hej, {userLoggedIn.userFirstName}!</h1> : <p>Loading...</p>}
       {userLoggedIn ?
         <div className={styles.compContainer}>
-          <UserFavourites />
           <UserInfo />
+          <UserFavourites />
         </div> : null }
     </div>
   );
