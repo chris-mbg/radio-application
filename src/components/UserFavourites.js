@@ -17,25 +17,29 @@ const UserFavourites = () => {
           userFavourites.programs.length === 0 ? (
             <p>Inga favoriter än..</p>
           ) : (
-            <div>
-              <h3>Kanaler</h3>
-              {userFavourites.channels.map((channel) => (
-                <p
-                  key={channel.channelId}
-                  onClick={() => history.push(`/channel/${channel.channelId}`)}
-                >
-                  {channel.channelName}
-                </p>
-              ))}
-              <h3>Program</h3>
-              {userFavourites.programs.map((prog) => (
-                <p
-                  key={prog.programId}
-                  onClick={() => history.push(`/program/${prog.programId}`)}
-                >
-                  {prog.programName}{" "}
-                </p>
-              ))}
+            <div className={styles.allFavWrapper}>
+              <div className={styles.channelFavWrapper}>
+                <h3>Kanaler</h3>
+                {userFavourites.channels.map((channel) => (
+                  <p
+                    key={channel.channelId}
+                    onClick={() => history.push(`/channel/${channel.channelId}`)}
+                  >
+                    {channel.channelName}
+                  </p>
+                ))}
+              </div>
+              <div className={styles.channelFavWrapper}>
+                <h3>Program</h3>
+                {userFavourites.programs.map((prog) => (
+                  <p
+                    key={prog.programId}
+                    onClick={() => history.push(`/program/${prog.programId}`)}
+                  >
+                    {prog.programName}
+                  </p>
+                ))}
+              </div>
             </div>
           )}
         </div>

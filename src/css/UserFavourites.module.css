@@ -2,8 +2,41 @@
   background-color: #251e18;
   border-radius: 5px;
   margin: 2rem;
-  padding: 1rem;
+  padding: 1rem 1rem 2rem 1rem;
   box-shadow: 2px 3px 8px 0 #aeaeb233;
+}
+.allFavWrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+.channelFavWrapper {
+  width: 45%;
+  margin: 0 auto;
+  background-color: #3d362b;
+  border-radius: 5px;
+  text-align: center;
+  /* box-shadow: 2px 3px 8px 0 #f5f5fa33; */
+}
+.channelFavWrapper h3 {
+  color: #859448;
+  font-size: 1.3rem;
+}
+.channelFavWrapper p {
+  cursor: pointer;
+  display: inline-block;
+  color: #f5f5fa;
+  font-weight: 500;
+  margin: 0.5rem;
+  padding: 0.8rem 1.3rem;
+  background-color: #3d362bf5;
+  box-shadow: 0px 0px 8px #85944877;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid #85944877;
+}
+.channelFavWrapper p:hover {
+  box-shadow: 0px 0px 10px #f5f5fa77;
+  /* filter: brightness(1.1); */
 }
 
 /* * COLOR CODES! */
