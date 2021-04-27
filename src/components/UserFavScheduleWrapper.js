@@ -29,7 +29,7 @@ const UserFavScheduleWrapper = () => {
   };
   const renderSchedules = () => {
     const tempArray = userFavourites.channels.map((channel) => (
-          scheduleToShow === channel.channelId && <div className={`${styles.channelScheduleContainer}`}><ChannelSchedule channelId={channel.channelId} /></div>
+          scheduleToShow === channel.channelId && <div className={styles.channelScheduleContainer}><ChannelSchedule channelId={channel.channelId} /></div>
     ))
     return tempArray
   };
