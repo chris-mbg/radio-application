@@ -14,16 +14,23 @@ const ProgramPage = (props) => {
     FavouriteContext
   );
   const [programInfo, setProgramInfo] = useState(null);
+  const [programSchedule, setProgramSchedule] = useState(null);
+
+  const fetchData = async () => {
+    let result = await fetchProgramInfo(programId);
+    console.log(result);
+    setProgramInfo(result);
+  };
+  const fetchScheduleData = async () => {
+    let result = await fetchProgramSchedule(programId);
+    console.log(result);
+    setProgramSchedule(result);
+  };
 
   useEffect(() => {
-    async function fetchData() {
-      let result = await fetchProgramInfo(programId);
-      console.log(result);
-      setProgramInfo(result);
-    }
     fetchData();
+    fetchScheduleData();
   }, []);
-
   useEffect(() => window.scrollTo(0, 0), []);
 
   const handleHeartClick = () => {
@@ -37,7 +44,7 @@ const ProgramPage = (props) => {
         : addUserFavourite({
             programId: programInfo.id,
             programName: programInfo.name,
-        });
+          });
     } else {
       return;
     }
@@ -46,36 +53,70 @@ const ProgramPage = (props) => {
   const renderProgramInfo = () => {
     return (
       <div>
-        {/* <div className="favouriteIconWrapper">
-          {userFavourites ?
-            (userFavourites.programs.some(p => p.programId === parseInt(programId)) ?
-              (<i onClick={handleHeartClick} className={`fas fa-heart fa-3x likeIcon`}></i>)
-              :
-              (<i onClick={handleHeartClick} className={`far fa-heart fa-3x likeIcon`}></i>))
-            : null
-          }
-        </div> */}
-        <h1>
-          {programInfo.name}
-          <span className="favouriteIconWrapper">
-            {userFavourites ? (
-              userFavourites.programs.some((p) => p.programId === parseInt(programId)) ? (
-                <i
-                  onClick={handleHeartClick}
-                  className={`fas fa-heart fa-3x likeIcon`}
-                ></i>
-              ) : (
-                <i
-                  onClick={handleHeartClick}
-                  className={`far fa-heart fa-3x likeIcon`}
-                ></i>
-              )
-            ) : null}
-          </span>
-        </h1>
-        <p>{programInfo.channel.name}</p>
-        <p>{programInfo.description}</p>
-        <img src={programInfo.programimage} />
+        <div className="favouriteIconWrapper">
+          {userFavourites ? (
+            userFavourites.programs.some(
+              (p) => p.programId === parseInt(programId)
+            ) ? (
+              <i
+                onClick={handleHeartClick}
+                className={`fas fa-heart fa-3x likeIcon`}
+              ></i>
+            ) : (
+              <i
+                onClick={handleHeartClick}
+                className={`far fa-heart fa-3x likeIcon`}
+              ></i>
+            )
+          ) : null}
+        </div>
+        <h1 className={styles.heading}>{programInfo.name}</h1>
+        <div className={styles.contentContainer}>
+          <div className={styles.textWrapper}>
+            <p className={styles.desc}>{programInfo.description}</p>
+            {programInfo.channel.name === "[No channel]" ? null : (
+              <p className={styles.light}>
+                Kanal:{" "}
+                <span className={styles.broadcastTitle}>
+                  {programInfo.channel.name}
+                </span>
+              </p>
+            )}
+            {programInfo.broadcastinfo !== "" && (
+              <p className={styles.light}>
+                Sänds:{" "}
+                <span className={styles.broadcastTitle}>
+                  {programInfo.broadcastinfo}
+                </span>
+              </p>
+            )}
+          </div>
+          <div className={styles.imgWrapper}>
+            <img src={programInfo.programimage} />
+          </div>
+        </div>
+        {programSchedule && programSchedule.broadcasts.length > 0 ? (
+          <div>
+            <h2>Senast sända program</h2>
+            {programSchedule.broadcasts.length > 20
+              ? programSchedule.broadcasts.slice(0, 20).map((episode) => (
+                  <p key={episode.id} className={styles.broadcast}>
+                    {episode.broadcastdateutc}{" "}
+                    <span className={styles.broadcastTitle}>
+                      {episode.title.substring(0, episode.title.length - 14)}
+                    </span>
+                  </p>
+                ))
+              : programSchedule.broadcasts.map((episode) => (
+                  <p key={episode.id} className={styles.broadcast}>
+                    {episode.broadcastdateutc}{" "}
+                    <span className={styles.broadcastTitle}>
+                      {episode.title.substring(0, episode.title.length - 14)}
+                    </span>
+                  </p>
+                ))}
+          </div>
+        ) : null}
       </div>
     );
   };
