@@ -2,7 +2,7 @@
   background-color: #251e18;
   border-radius: 5px;
   margin: 2rem;
-  padding: 1rem;
+  padding: 1rem 1rem 2rem 1rem;
   box-shadow: 2px 3px 8px 0 #aeaeb233;
   position: relative;
 }
@@ -12,12 +12,12 @@
   /* margin: 0 1rem; */
 }
 .deleteButtonWrapper button{
-  top: 0.8rem;
+  bottom: 0.8rem;
   right: 0.8rem;
   margin: 0;
-  height: 40px;
-  width: 100px;
-  font-size: 0.8rem;
+  height: 25px;
+  width: auto;
+  font-size: 0.7rem;
   position: absolute;
   color: #f75A0d;
   border: 1px solid #f75A0d;

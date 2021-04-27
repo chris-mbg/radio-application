@@ -11,7 +11,12 @@
 }
 .datePickWrapper label {
   margin-bottom: 0.5rem;
+  font-size: 0.9rem;
   display: inline-block;
+}
+.datePickWrapper input {
+  font-size: 1rem;
+  padding: 0.2rem;
 }
 .programContainer {
   border-bottom: 1px solid #aeaeb2;
