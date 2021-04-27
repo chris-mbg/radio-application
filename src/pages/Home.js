@@ -10,8 +10,8 @@ const Home = () => {
   return (
     <div>
       <h1>Välkommen [annan text]</h1>
-      <CategoriesForm />
       <CardWrapper />
+      <CategoriesForm />
     </div>
   );
 }

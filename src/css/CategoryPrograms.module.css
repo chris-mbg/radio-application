@@ -1,3 +1,7 @@
+.catName {
+  color: #859448;
+  font-size: 1.6rem;
+}
 .programWrapper {
   display: flex;
   flex-flow: row wrap;
@@ -6,18 +10,19 @@
   border-radius: 10px;
   margin: 2rem;
   padding: 0.5rem;
+  /* border: 1px solid #85944877; */
 }
 .programName {
-  color: #859448;
+  color: #f5f5fa;
   font-weight: 500;
-  margin: 0.4rem;
+  margin: 0.5rem;
   width: 180px;
   height: 60px;
   background-color: #3d362b;
-  box-shadow: 2px 2px 8px #85944877;
+  box-shadow: 2px 2px 8px #aeaeb277;
   text-align: center;
   padding: 0.3rem;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;

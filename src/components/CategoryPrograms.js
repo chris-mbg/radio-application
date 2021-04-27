@@ -7,13 +7,16 @@ const CategoryPrograms = ({categoryId}) => {
   const history = useHistory();
   const { fetchProgramsInCat } = useContext(RadioContext);
   const [programList, setProgramList ] = useState(null);
-  const [isVisible, setIsVisible] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
 
-  useEffect( async () => {
+  const fetchData = async () => {
     if (categoryId !== "0") {
-      setProgramList(await fetchProgramsInCat(categoryId));
+      let result = await fetchProgramsInCat(categoryId);
+      setProgramList(result);
     }
-  }, [categoryId]);
+  }
+
+  useEffect(() => fetchData(), [categoryId]);
 
   useEffect( () => console.log('In categoryProg', programList),[programList]);
 
@@ -26,7 +29,7 @@ const CategoryPrograms = ({categoryId}) => {
     if(programList) {
       return (
         <div className={styles.categoryProgramsContainer}>
-          <h1>Här kommer listan..</h1>
+          <h2>Program i kategori: <span className={styles.catName}>{programList[0].programcategory.name}</span></h2>
           <div className={styles.programWrapper}>
             {programList.map(prog => (
               <div key={prog.id} onClick={() => handleProgramNameClick(prog.id)} className={styles.programName}>
@@ -42,8 +45,8 @@ const CategoryPrograms = ({categoryId}) => {
   }
 
   return (
-    <div>
-      {categoryId !== "0" ? renderProgramList() : <p>Ingen lista...</p>}
+    <div className={styles.componentContainer}>
+      {categoryId !== "0" ? renderProgramList() : null}
     </div>
   );
 }
