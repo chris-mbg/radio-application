@@ -16,6 +16,13 @@
 .channelCard:hover {
   box-shadow: 0 8px 16px 0 #f75A0d33;
 }
+.channelCard.disable {
+  filter: brightness(0.5);
+  cursor: no-drop;
+}
+.channelCard.disable:hover {
+  box-shadow: none;
+}
 
 .imgContainer {
   width: 90px;
