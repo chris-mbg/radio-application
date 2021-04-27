@@ -26,10 +26,10 @@ const UserFavourites = () => {
               {userFavourites.programs.map((prog) => (
                 <p key={prog.programId}>{prog.programName}</p>
               ))}
-              <h3>Favoritavsnitt</h3>
+              {/* <h3>Favoritavsnitt</h3>
               {userFavourites.episodes.map((epi) => (
                 <p key={epi.episodeId}>{epi.episodeTitle}</p>
-              ))}
+              ))} */}
             </div>
           )}
         </div>

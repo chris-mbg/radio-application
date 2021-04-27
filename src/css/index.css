@@ -48,6 +48,24 @@ input {
   position: relative;
   padding-bottom: 70px;
 }
+div.favouriteIconWrapper {
+  position: absolute;
+  text-align: right;
+  top: 1rem;
+  right: 1rem;
+}
+span.favouriteIconWrapper {
+  font-size: 1rem;
+  margin: 0 1rem;
+}
+i.likeIcon {
+  color: #f75A0d;
+  cursor: pointer;
+}
+i.likeIcon:hover {
+  text-shadow: 0 0 1rem #f75A0d;
+  filter: brightness(1.1);
+}
 
 /* * COLOR CODES! */
 /*  Nearly black:   #251e18

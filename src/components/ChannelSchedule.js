@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { FavouriteContext } from "../contexts/FavouriteContext";
 import { RadioContext } from "../contexts/RadioContext";
 import styles from "../css/ChannelSchedule.module.css";
 
@@ -8,6 +9,7 @@ const ChannelSchedule = ({channelId}) => {
   const [channelSchedule, setChannelSchedule] = useState(null);
   const [scheduleDate, setScheduleDate] = useState(null);
   const { fetchChannelSchedule } = useContext(RadioContext);
+  const { userFavourites, addUserFavourite, deleteUserFavourite } = useContext(FavouriteContext);
 
   const handleDateChange = e => {
     setScheduleDate(e.target.value);
@@ -20,8 +22,19 @@ const ChannelSchedule = ({channelId}) => {
 
   // eslint-disable-next-line
   useEffect(() => fetchData(channelId, scheduleDate), []);
+  // eslint-disable-next-line
   useEffect(() => fetchData(channelId, scheduleDate), [scheduleDate]);
-  useEffect(() => console.log('kanaltablå', channelSchedule), [channelSchedule]);
+  //useEffect(() => console.log('kanaltablå', channelSchedule), [channelSchedule]);
+
+  const handleHeartClick = (favInfo) => {
+    if (userFavourites){
+      const alreadyFav = userFavourites.programs.some(prog => prog.programId ===  favInfo.programId);
+      console.log('want to add fav', alreadyFav);
+      alreadyFav ? deleteUserFavourite({ programId: favInfo.programId}) : addUserFavourite(favInfo);
+    } else {
+      return
+    }
+  };
 
   const renderSchedule = () => {
     return (
@@ -39,8 +52,32 @@ const ChannelSchedule = ({channelId}) => {
                 <span onClick={() => history.push(`/program/${prog.program.id}`)} className={styles.programName}> {prog.program.name} - </span>
                 <span className={styles.desc}>{prog.description}</span>
               </p>
-              <button>Favoritmarkera avsnitt</button>
-            </div>) : null
+              <div className={styles.favouriteIconWrapper}>
+                {userFavourites ?
+                  (userFavourites.programs.some(favProg => favProg.programId ===  prog.program.id) ?
+                    (<i onClick={() => handleHeartClick({programId: prog.program.id, programName: prog.program.name})} className={`fas fa-heart likeIcon`}></i>)
+                    :
+                    (<i onClick={() => handleHeartClick({programId: prog.program.id, programName: prog.program.name})} className={`far fa-heart likeIcon`}></i>)
+                  )
+                : null
+                }
+                {/* {userFavourites && userFavourites.episodes.map(episode => (
+                  prog.episodeid ?
+                    (episode.episodeId === parseInt(prog.episodeid)) ?
+                      (<i onClick={() => handleHeartClick({episodeId: prog.episodeid, episodeTitle: prog.title})} className={`fas fa-heart likeIcon`}></i>)
+                    :
+                      (<i onClick={() => handleHeartClick({episodeId: prog.episodeid, episodeTitle: prog.title})} className={`far fa-heart likeIcon`}></i>)
+                  :
+                    (userFavourites.programs.some(favProg => favProg.programId ===  parseInt(prog.program.id)) ?
+                      (<i onClick={() => handleHeartClick({programId: prog.program.id, programName: prog.program.name})} className={`fas fa-heart likeIcon`}></i>)
+                    :
+                      (<i onClick={() => handleHeartClick({programId: prog.program.id, programName: prog.program.name})} className={`far fa-heart likeIcon`}></i>)
+                    )
+                ))
+                } */}
+              </div>
+            </div>
+          ) : null
         ))}
       </div>
     )

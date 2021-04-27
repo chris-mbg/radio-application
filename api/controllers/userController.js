@@ -2,7 +2,7 @@ const path = require("path");
 const encrypt = require("../core/encrypt");
 
 const sqlite3 = require("sqlite3");
-const db = new sqlite3.Database(path.join(__dirname, "../radioAppDB.db"));
+const db = new sqlite3.Database(path.join(__dirname, "../../radioAppDB.db"));
 
 const whoami = (req, res) => {
   console.log('From whoami', req.session.user);
@@ -45,7 +45,7 @@ const getUserById = (req, res) => {
       return
     } else {
       delete user.password
-      res.json(user)
+      res.json(user);
     }
   });
 }
@@ -197,6 +197,7 @@ const getAllSavedFavouritesForUser = (req, res) => {
 };
 
 const saveFavouriteToUser = (req, res) => {
+  console.log('From saveFavToUser. session-user:', req.session.user);
   if (req.body.channelId) {
     let query = /*sql*/ `INSERT INTO channels (channelId, channelName, userId) VALUES ($channelId, $channelName, $userId)`;
     let params = {
@@ -206,6 +207,7 @@ const saveFavouriteToUser = (req, res) => {
     };
     db.run(query, params, function (err, result) {
       if (err) {
+        console.log(err)
         res.status(400).json({ error: err });
         return;
       } else {
@@ -259,7 +261,7 @@ const deleteUserFavourite = (req, res) => {
   let query;
   let params = { $userId: req.session.user.userId };
   if(req.body.channelId) {
-    query = /*sql*/`SELECT * from channel WHERE channelId = $channelId AND userId = $userId`
+    query = /*sql*/`SELECT * from channels WHERE channelId = $channelId AND userId = $userId`
     params.$channelId = req.body.channelId;
     let channelToDelete = db.get(query, params);
     if (!channelToDelete) {
