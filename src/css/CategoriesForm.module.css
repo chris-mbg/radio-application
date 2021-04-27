@@ -1,6 +1,6 @@
 .categoriesFormContainer {
   text-align: center;
-  margin: 2rem;
+  margin: 2rem 0.5rem;
   background-color: #251e18;
   border-radius: 5px;
   padding: 1rem 1rem 3rem 1rem;
@@ -15,4 +15,10 @@
   background-color: #f5f5fa;
   color: #251e18;
   margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .categoriesFormContainer {
+    margin: 2rem;
+  }
 }
