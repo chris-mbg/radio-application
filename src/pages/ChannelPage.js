@@ -42,17 +42,18 @@ const ChannelPage = (props) => {
   const renderChannelContent = () => {
     return (
       <div>
-        <h1>{channelInfo.name}</h1>
-        <div className="favouriteIconWrapper">
-          {userFavourites ?
-            (userFavourites.channels.some(ch => ch.channelId === parseInt(channelId)) ?
-              (<i onClick={handleHeartClick} className={`fas fa-heart fa-3x likeIcon`}></i>)
-              :
-              (<i onClick={handleHeartClick} className={`far fa-heart fa-3x likeIcon`}></i>))
-            : null
-          }
-        </div>
-        <p>{channelInfo.channeltype}</p>
+        <h1>{channelInfo.name}
+          <span className="favouriteIconWrapper">
+            {userFavourites ?
+              (userFavourites.channels.some(ch => ch.channelId === parseInt(channelId)) ?
+                (<i onClick={handleHeartClick} className={`fas fa-heart fa-3x likeIcon`}></i>)
+                :
+                (<i onClick={handleHeartClick} className={`far fa-heart fa-3x likeIcon`}></i>))
+              : null
+            }
+          </span>
+        </h1>
+        {/* <p>{channelInfo.channeltype}</p> */}
         <p className={styles.tagline}>{channelInfo.tagline}</p>
         {/* <div className={styles.imgWrapper}>
           <img src={channelInfo.image} alt="channel logo"/>
