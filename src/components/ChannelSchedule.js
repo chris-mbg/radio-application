@@ -24,7 +24,7 @@ const ChannelSchedule = ({channelId}) => {
   useEffect(() => fetchData(channelId, scheduleDate), []);
   // eslint-disable-next-line
   useEffect(() => fetchData(channelId, scheduleDate), [scheduleDate]);
-  useEffect(() => console.log('kanaltablå', channelSchedule), [channelSchedule]);
+  //useEffect(() => console.log('kanaltablå', channelSchedule), [channelSchedule]);
 
   const handleHeartClick = (favInfo) => {
     if (userFavourites){
