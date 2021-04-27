@@ -17,7 +17,13 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
-      <NavLink to="/" className={`${styles.navlink} ${styles.navLogoWrapper}`}>
+      <NavLink to="/" className={`${styles.navlink} ${styles.navLogoWrapper} ${styles.navLogoSmall}`}>
+        <p className={styles.navLogo}>P.Ett</p>
+        {/* <div className={styles.radioIconWrapper}> */}
+          <img className={styles.radioIcon} src="./assets/icons/radio-icon-2.svg" alt="radio icon"/>
+        {/* </div> */}
+      </NavLink>
+      <NavLink to="/" className={`${styles.navlink} ${styles.navLogoWrapper} ${styles.navLogoLarge}`}>
         <p className={styles.navLogo}>ProgramEtt</p>
         {/* <div className={styles.radioIconWrapper}> */}
           <img className={styles.radioIcon} src="./assets/icons/radio-icon-2.svg" alt="radio icon"/>
