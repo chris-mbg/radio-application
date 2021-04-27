@@ -2,7 +2,7 @@ const path = require("path");
 const encrypt = require("../core/encrypt");
 
 const sqlite3 = require("sqlite3");
-const db = new sqlite3.Database(path.join(__dirname, "../radioAppDB.db"));
+const db = new sqlite3.Database(path.join(__dirname, "../../radioAppDB.db"));
 
 const whoami = (req, res) => {
   console.log('From whoami', req.session.user);

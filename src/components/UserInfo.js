@@ -10,6 +10,7 @@ const UserInfo = () => {
   useEffect(() => {
     if (userLoggedIn) setEmail(userLoggedIn.userEmail);
   }, [userLoggedIn]);
+  //useEffect(()=> loggedInCheck(), []);
 
   const toggleEditMode = () => setEditModeOn((prevState) => !prevState);
 
@@ -21,7 +22,7 @@ const UserInfo = () => {
   const handleEditSubmit = async () => {
     let result = await editUser({ email: email });
     if(result.success) {
-      
+
     }
   };
 
