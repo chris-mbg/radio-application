@@ -53,7 +53,7 @@ const ChannelSchedule = ({channelId}) => {
                 <span className={styles.desc}>{prog.description}</span>
               </p>
               <div className={styles.favouriteIconWrapper}>
-                {userFavourites ?
+                {userFavourites && prog.program.id !== prog.channel.id ?
                   (userFavourites.programs.some(favProg => favProg.programId ===  prog.program.id) ?
                     (<i onClick={() => handleHeartClick({programId: prog.program.id, programName: prog.program.name})} className={`fas fa-heart likeIcon`}></i>)
                     :

@@ -32,7 +32,7 @@ const ProgramList = ({ channelId }) => {
 
   return (
     <div className={styles.programListContainer}>
-      {programList && programList.length > 0 ? (<h2>Alla program i {programList[0].channel.name}</h2>) : <h2>Inga program tillgängliga för kanalen</h2>}
+      {programList && programList.length > 0 ? (<h2>Alla program i {programList[0].channel.name}</h2>) : <h2>Inga program finns tillgängliga för kanalen</h2>}
       {programList ? renderProgramList() : null}
     </div>
   );
