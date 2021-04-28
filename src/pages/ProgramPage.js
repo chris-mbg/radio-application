@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FavouriteContext } from "../contexts/FavouriteContext";
 import { RadioContext } from "../contexts/RadioContext";
 import styles from "../css/ProgramPage.module.css";
@@ -27,12 +27,10 @@ const ProgramPage = (props) => {
   };
 
   useEffect(() => {
-    isMounted.current = true;
     if (isMounted.current) {
       fetchData();
       fetchScheduleData();
     }
-    return () => (isMounted.current = false);
   }, []);
 
   useEffect(() => window.scrollTo(0, 0), []);
@@ -42,7 +40,6 @@ const ProgramPage = (props) => {
       const alreadyFav = userFavourites.programs.some(
         (p) => p.programId === parseInt(programId)
       );
-      console.log("want to add fav", alreadyFav);
       alreadyFav
         ? deleteUserFavourite({ programId: programInfo.id })
         : addUserFavourite({

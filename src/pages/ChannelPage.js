@@ -12,20 +12,20 @@ const ChannelPage = (props) => {
   const { userFavourites, addUserFavourite, deleteUserFavourite } = useContext(FavouriteContext);
   const [channelInfo, setChannelInfo] = useState(null);
 
-  const isMountedRef = useIsMountedRef();
+  const isMounted = useIsMountedRef();
 
   const fetchData = async (channelId, fetchMethod) => {
-    if(isMountedRef.current) {
-      const result = await fetchMethod(channelId);
+    const result = await fetchMethod(channelId);
+    if(isMounted.current) {
       setChannelInfo(result);
     }
   };
 
   useEffect( () => {
-    if (isMountedRef.current) {
+    if (isMounted.current) {
       fetchData(channelId, fetchSingleChannel)
     }
-  }, [isMountedRef]);
+  }, []);
 
   useEffect(() => window.scrollTo(0, 0), []);
 

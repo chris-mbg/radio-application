@@ -9,20 +9,20 @@ const ProgramList = ({ channelId }) => {
   const { fetchProgramsForChannel } = useContext(RadioContext);
   const [programList, setProgramList] = useState(null);
 
-  const isMountedRef = useIsMountedRef();
+  const isMounted = useIsMountedRef();
 
   const fetchData = async (channelId) => {
-    if(isMountedRef.current) {
-      const result = await fetchProgramsForChannel(channelId);
+    const result = await fetchProgramsForChannel(channelId);
+    if(isMounted.current) {
       setProgramList(result);
     }
   };
 
   useEffect(() => {
-    if(isMountedRef.current) {
+    if(isMounted.current) {
       fetchData(channelId)
     }
-  }, [isMountedRef]);
+  }, []);
 
   //useEffect(() => console.log(programList), [programList]);
 
