@@ -2,53 +2,37 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { FavouriteContext } from "../contexts/FavouriteContext";
 import { RadioContext } from "../contexts/RadioContext";
 import styles from "../css/ProgramPage.module.css";
+import useIsMountedRef from "../hooks/useIsMountedRef";
 
 const ProgramPage = (props) => {
   const { programId } = props.match.params;
-  const {
-    fetchProgramInfo,
-    fetchProgramSchedule,
-    // fetchAllEpisodesForProgram,
-  } = useContext(RadioContext);
-  const { userFavourites, addUserFavourite, deleteUserFavourite } = useContext(
-    FavouriteContext
-  );
+  const { fetchProgramInfo, fetchProgramSchedule } = useContext(RadioContext);
+  const { userFavourites, addUserFavourite, deleteUserFavourite } = useContext(FavouriteContext);
   const [programInfo, setProgramInfo] = useState(null);
   const [programSchedule, setProgramSchedule] = useState(null);
 
-  const isMountedRef = useRef(null);
+  const isMounted = useIsMountedRef();
 
-  const fetchData = async (signal) => {
-      let result = await fetchProgramInfo(programId);
-      //console.log(result);
-      if (isMountedRef.current) {
-        console.log('In fetch data, setting state of program info')
-        setProgramInfo(result);
-      }
+  const fetchData = async () => {
+    let result = await fetchProgramInfo(programId);
+    if (isMounted.current) {
+      setProgramInfo(result);
+    }
   };
   const fetchScheduleData = async () => {
-      let result = await fetchProgramSchedule(programId);
-      // console.log(result);
-      if (isMountedRef.current) {
-        console.log('In fetch schedule data, setting state of prog schedule')
-        setProgramSchedule(result);
-      }
+    let result = await fetchProgramSchedule(programId);
+    if (isMounted.current) {
+      setProgramSchedule(result);
+    }
   };
 
   useEffect(() => {
-    isMountedRef.current = true;
-    // const abortController = new AbortController();
-    // const signal = abortController.signal
-    if (isMountedRef.current) {
+    isMounted.current = true;
+    if (isMounted.current) {
       fetchData();
       fetchScheduleData();
     }
-
-    return () => {
-      isMountedRef.current = false;
-      console.log('In return of use effect', isMountedRef.current);
-    }
-    //return () => abortController.abort();
+    return () => (isMounted.current = false);
   }, []);
 
   useEffect(() => window.scrollTo(0, 0), []);
