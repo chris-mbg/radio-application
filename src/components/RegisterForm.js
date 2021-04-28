@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import styles from "../css/RegisterForm.module.css";
 
-const RegisterForm = () => {
+const RegisterForm = ({hideModal}) => {
   const { registerNewUser } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
@@ -31,7 +31,7 @@ const RegisterForm = () => {
     setPasswordCheck(passwordRequirements);
   };
 
-  const handleRegSubmit = (e) => {
+  const handleRegSubmit = async (e) => {
     e.preventDefault();
     const passwordOK = passwordRegex.test(password);
     console.log('Password OK?', passwordOK);
@@ -44,7 +44,10 @@ const RegisterForm = () => {
         lastName,
         password,
       };
-      registerNewUser(newUser);
+      const result = await registerNewUser(newUser);
+      if(result.success) {
+        hideModal();
+      }
     }
   };
 
@@ -84,7 +87,7 @@ const RegisterForm = () => {
             <p className={passwordCheck.notCapLetter ? styles.fulfilled : styles.notOK}>Minst en gemen</p>
             <p className={passwordCheck.capLetter ? styles.fulfilled : styles.notOK}>Minst en versal</p>
             <p className={passwordCheck.specChars ? styles.fulfilled : styles.notOK}>Minst ett specialtecken</p>
-            <p className={passwordCheck.noWhitespace ? styles.fulfilled : styles.notOK}>Inget mellanslag</p>
+            <p className={passwordCheck.noWhitespace ? styles.fulfilled : styles.notOK}>Inga mellanslag</p>
           </div>
         </div>
         <button type="submit">Registera</button>

@@ -1,16 +1,13 @@
 .modalContainer {
   position: absolute;
-  top: 10vh;
-  /* bottom: 10vh; */
-  left: 10vh;
-  right: 10vh;
-  /* max-height: 800px; */
+  top: 5vh;
+  left: 5vh;
+  right: 5vh;
   background-color: #aeaeb2f8;
   text-align: center;
   color: #251e18;
   border-radius: 5px;
-  padding-bottom: 5rem;
-  /* overflow: scroll; */
+  padding: 1rem 0 3rem 0;
 }
 
 .closeButtonContainer {
@@ -23,6 +20,7 @@
   width: 30px;
   height: 30px;
   font-weight: 700;
+  margin: 0;
 }
 .contentContainer {
   padding-top: 2rem;
@@ -33,4 +31,18 @@
   justify-content: center;
   margin: 0 auto;
   width: 95%;
+}
+@media screen and (min-width: 576px) {
+  .modalContainer {
+    top: 10vh;
+    left: 10vh;
+    right: 10vh;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .modalContainer {
+    top: 10vh;
+    left: 25vh;
+    right: 25vh;
+  }
 }
