@@ -16,27 +16,39 @@ const ProgramPage = (props) => {
   const [programInfo, setProgramInfo] = useState(null);
   const [programSchedule, setProgramSchedule] = useState(null);
 
+  const isMountedRef = useRef(null);
 
   const fetchData = async (signal) => {
-      let result = await fetchProgramInfo(programId, signal);
-      console.log(result);
-      setProgramInfo(result);
+      let result = await fetchProgramInfo(programId);
+      //console.log(result);
+      if (isMountedRef.current) {
+        console.log('In fetch data, setting state of program info')
+        setProgramInfo(result);
+      }
   };
   const fetchScheduleData = async () => {
       let result = await fetchProgramSchedule(programId);
       // console.log(result);
-      setProgramSchedule(result);
+      if (isMountedRef.current) {
+        console.log('In fetch schedule data, setting state of prog schedule')
+        setProgramSchedule(result);
+      }
   };
 
   useEffect(() => {
+    isMountedRef.current = true;
+    // const abortController = new AbortController();
+    // const signal = abortController.signal
+    if (isMountedRef.current) {
+      fetchData();
+      fetchScheduleData();
+    }
 
-    const abortController = new AbortController();
-    const signal = abortController.signal
-
-    fetchData({signal: signal});
-    fetchScheduleData();
-
-    return () => abortController.abort();
+    return () => {
+      isMountedRef.current = false;
+      console.log('In return of use effect', isMountedRef.current);
+    }
+    //return () => abortController.abort();
   }, []);
 
   useEffect(() => window.scrollTo(0, 0), []);
@@ -100,7 +112,7 @@ const ProgramPage = (props) => {
             )}
           </div>
           <div className={styles.imgWrapper}>
-            <img src={programInfo.programimage} />
+            <img src={programInfo.programimage} alt="" />
           </div>
         </div>
         {programSchedule && programSchedule.broadcasts.length > 0 ? (

@@ -28,7 +28,7 @@ const ProgramList = ({ channelId }) => {
 
   const renderProgramList = () => {
     const listToShow = programList.filter((prog) => prog.archived === false);
-    console.log("fr render func", listToShow);
+    //console.log("fr render func", listToShow);
     return (
       <ul>
         {listToShow.map((prog) => (

@@ -10,9 +10,7 @@ const UserContextProvider = (props) => {
   const loggedInCheck = async () => {
     let result = await fetch("/api/v1/users/whoami");
     result = await result.json();
-    console.log('In loggedincheck', result);
     if (result) {
-      console.log("Someone is logged in", result);
       setUserLoggedIn({
         userEmail: result.email,
         userId: result.userId,
