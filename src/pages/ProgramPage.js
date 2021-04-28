@@ -16,33 +16,27 @@ const ProgramPage = (props) => {
   const [programInfo, setProgramInfo] = useState(null);
   const [programSchedule, setProgramSchedule] = useState(null);
 
-  const isMountedRef = useRef(null);
 
-  const fetchData = async () => {
-    console.log('From fetchdata progInfo', isMountedRef.current);
-    if(isMountedRef.current) {
-      let result = await fetchProgramInfo(programId);
+  const fetchData = async (signal) => {
+      let result = await fetchProgramInfo(programId, signal);
       console.log(result);
       setProgramInfo(result);
-    }
   };
   const fetchScheduleData = async () => {
-    console.log('From fetchScheduledata', isMountedRef.current);
-    if(isMountedRef.current) {
       let result = await fetchProgramSchedule(programId);
       // console.log(result);
       setProgramSchedule(result);
-    }
   };
 
   useEffect(() => {
-    isMountedRef.current = true;
-    if(isMountedRef.current) {
-      fetchData();
-      fetchScheduleData();
-    }
 
-    return () => isMountedRef.current = false;
+    const abortController = new AbortController();
+    const signal = abortController.signal
+
+    fetchData({signal: signal});
+    fetchScheduleData();
+
+    return () => abortController.abort();
   }, []);
 
   useEffect(() => window.scrollTo(0, 0), []);

@@ -42,8 +42,8 @@ const RadioContextProvider = (props) => {
     return programList;
   };
 
-  const fetchProgramInfo = async (programId) => {
-    let programInfo = await fetch(`/api/v1/programs/${programId}`);
+  const fetchProgramInfo = async (programId, signal = null) => {
+    let programInfo = await fetch(`/api/v1/programs/${programId}`, signal);
     programInfo = await programInfo.json();
     return programInfo;
   };
