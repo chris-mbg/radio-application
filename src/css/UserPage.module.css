@@ -1,13 +1,19 @@
 .logoutButtonWrapper {
   text-align: right;
-  margin: 1rem 2rem;
+  margin: 1rem;
 }
 .logoutButtonWrapper button {
   width: 80px;
+  height: 30px;
   background-color: #859448;
 }
 
 .logoutButtonWrapper button:hover {
   box-shadow: 0 0px 20px 2px #859448;
   filter: brightness(1.0);
+}
+@media screen and (min-width:768px) {
+  .logoutButtonWrapper {
+    margin: 1rem 2rem;
+  }
 }

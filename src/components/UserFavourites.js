@@ -13,7 +13,7 @@ const UserFavourites = () => {
   const renderUserFav = () => {
     return (
       <div>
-          <h2>Dina favoriter</h2>
+          <h2 className={styles.heading}>Dina favoriter</h2>
           {userFavourites.channels.length === 0 &&
           userFavourites.programs.length === 0 ? (
             <p>Inga favoriter än..</p>

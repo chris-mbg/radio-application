@@ -29,11 +29,6 @@ const UserInfo = () => {
   return (
     <div className={styles.userInfoContainer}>
       {userLoggedIn ? (
-        <div className={styles.deleteButtonWrapper}>
-          <button onClick={handleDeleteClick}>Ta bort konto <i className="fas fa-skull-crossbones"></i></button>
-        </div>
-      ) : null}
-      {userLoggedIn ? (
         <div>
           <h2>Användaruppgifter</h2>
           <p>
@@ -55,6 +50,11 @@ const UserInfo = () => {
             <button className={styles.editButton} type="submit">Bekräfta ändring</button>
           </form>
         </fieldset>
+      ) : null}
+      {userLoggedIn ? (
+        <div className={styles.deleteButtonWrapper}>
+          <button onClick={handleDeleteClick}>Ta bort konto <i className="fas fa-skull-crossbones"></i></button>
+        </div>
       ) : null}
     </div>
   );

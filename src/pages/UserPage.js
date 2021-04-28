@@ -11,8 +11,7 @@ const UserPage = () => {
 
   const { userLoggedIn, logoutUser } = useContext(UserContext);
 
-  const handleLogout = e => {
-    e.stopPropagation();
+  const handleLogout = () => {
     logoutUser();
   }
 
@@ -22,7 +21,7 @@ const UserPage = () => {
         <div className={styles.logoutButtonWrapper}>
           <button onClick={handleLogout}>Logga ut</button>
         </div> : null }
-      {userLoggedIn ? <h1>Hej, {userLoggedIn.userFirstName}!</h1> : <p>Loading...</p>}
+      {userLoggedIn ? <h1>Välkommen, {userLoggedIn.userFirstName}!</h1> : <p>Loading...</p>}
       {userLoggedIn ?
         <div className={styles.compContainer}>
           <UserInfo />
