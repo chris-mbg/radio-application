@@ -20,7 +20,6 @@ const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
-// Middleware to get access to request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

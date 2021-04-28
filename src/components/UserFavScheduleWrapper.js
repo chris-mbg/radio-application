@@ -15,31 +15,45 @@ const UserFavScheduleWrapper = () => {
     return (
       <div className={styles.tabs}>
         {userFavourites.channels.map((channel) => (
-        <p
-          className={`${styles.tab}  ${
-            scheduleToShow === channel.channelId ? styles.active : ""
-          }`}
-          onClick={() => setScheduleToShow(channel.channelId)}
-        >
-          {channel.channelName}
-        </p>)
-        )}
+          <p
+            key={channel.channelId}
+            className={`${styles.tab}  ${
+              scheduleToShow === channel.channelId ? styles.active : ""
+            }`}
+            onClick={() => setScheduleToShow(channel.channelId)}
+          >
+            {channel.channelName}
+          </p>
+        ))}
       </div>
     );
   };
   const renderSchedules = () => {
-    const tempArray = userFavourites.channels.map((channel) => (
-          scheduleToShow === channel.channelId && <div className={styles.channelScheduleContainer}><ChannelSchedule channelId={channel.channelId} /></div>
-    ))
-    return tempArray
+    const tempArray = userFavourites.channels.map(
+      (channel) =>
+        scheduleToShow === channel.channelId && (
+          <div key={channel.channelId} className={styles.channelScheduleContainer}>
+            <ChannelSchedule channelId={channel.channelId} />
+          </div>
+        )
+    );
+    return tempArray;
   };
 
   return (
     <div className={styles.componentContainer}>
       <h3>Tablåer för dina kanaler</h3>
       <div className={styles.schedulesContainer}>
-        {userFavourites && scheduleToShow ? renderScheduleTabs() : <div>Loading...</div>}
-        {userFavourites && scheduleToShow ? renderSchedules() : <div>Loading...</div>}
+        {userFavourites && scheduleToShow ? (
+          renderScheduleTabs()
+        ) : (
+          <div>Loading...</div>
+        )}
+        {userFavourites && scheduleToShow ? (
+          renderSchedules()
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </div>
   );
