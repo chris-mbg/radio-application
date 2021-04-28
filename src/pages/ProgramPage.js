@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { FavouriteContext } from "../contexts/FavouriteContext";
 import { RadioContext } from "../contexts/RadioContext";
 import styles from "../css/ProgramPage.module.css";
@@ -8,7 +8,7 @@ const ProgramPage = (props) => {
   const {
     fetchProgramInfo,
     fetchProgramSchedule,
-    fetchAllEpisodesForProgram,
+    // fetchAllEpisodesForProgram,
   } = useContext(RadioContext);
   const { userFavourites, addUserFavourite, deleteUserFavourite } = useContext(
     FavouriteContext
@@ -16,21 +16,35 @@ const ProgramPage = (props) => {
   const [programInfo, setProgramInfo] = useState(null);
   const [programSchedule, setProgramSchedule] = useState(null);
 
+  const isMountedRef = useRef(null);
+
   const fetchData = async () => {
-    let result = await fetchProgramInfo(programId);
-    console.log(result);
-    setProgramInfo(result);
+    console.log('From fetchdata progInfo', isMountedRef.current);
+    if(isMountedRef.current) {
+      let result = await fetchProgramInfo(programId);
+      console.log(result);
+      setProgramInfo(result);
+    }
   };
   const fetchScheduleData = async () => {
-    let result = await fetchProgramSchedule(programId);
-    console.log(result);
-    setProgramSchedule(result);
+    console.log('From fetchScheduledata', isMountedRef.current);
+    if(isMountedRef.current) {
+      let result = await fetchProgramSchedule(programId);
+      // console.log(result);
+      setProgramSchedule(result);
+    }
   };
 
   useEffect(() => {
-    fetchData();
-    fetchScheduleData();
+    isMountedRef.current = true;
+    if(isMountedRef.current) {
+      fetchData();
+      fetchScheduleData();
+    }
+
+    return () => isMountedRef.current = false;
   }, []);
+
   useEffect(() => window.scrollTo(0, 0), []);
 
   const handleHeartClick = () => {
