@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import styles from '../css/LoginForm.module.css'
 
-const LoginForm = () => {
+const LoginForm = ({ hideModal }) => {
 
   const { logInUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
@@ -18,7 +18,9 @@ const LoginForm = () => {
     if(login.error) {
       setNotFound(true);
       setTimeout(() => setNotFound(false), 3000);
-    } 
+    } else {
+      hideModal();
+    }
   };
 
   return (

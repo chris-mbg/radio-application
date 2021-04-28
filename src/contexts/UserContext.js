@@ -75,6 +75,7 @@ const UserContextProvider = (props) => {
       loggedInCheck();
       history.push("/");
     }
+    return result;
   };
 
   const deleteUser = async () => {
