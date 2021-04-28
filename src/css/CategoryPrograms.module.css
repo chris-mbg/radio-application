@@ -5,23 +5,20 @@
 .programWrapper {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
   background-color: #251e18;
   border-radius: 10px;
-  margin: 2rem;
-  padding: 0.5rem;
-  /* border: 1px solid #85944877; */
+  margin: 0.5rem;
+  /* padding: 0.5rem; */
 }
 .programName {
   color: #f5f5fa;
   font-weight: 500;
   margin: 0.5rem;
-  width: 180px;
-  height: 60px;
   background-color: #3d362b;
   box-shadow: 2px 2px 8px #aeaeb277;
   text-align: center;
-  padding: 0.3rem;
+  padding: 0.4rem 0.6rem;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -31,6 +28,18 @@
 .programName:hover {
   box-shadow: 4px 4px 10px #85944877;
   filter: brightness(1.1);
+}
+.programName p {
+  margin: 0;
+}
+@media screen and (min-width: 576px) {
+  .programWrapper {
+    margin: 1rem;
+  }
+  .programName {
+    width: 180px;
+    height: 60px;
+  }
 }
 
 /* * COLOR CODES! */

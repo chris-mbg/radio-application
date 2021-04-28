@@ -25,6 +25,9 @@
   font-size: 2rem;
   margin: 0 1rem 0 0;
 }
+.navLogoWrapper.navLogoLarge {
+  display: none;
+}
 .radioIconWrapper {
   display: flex;
   /* justify-content: baseline; */
@@ -51,4 +54,12 @@
 }
 .linkWrapper p {
   cursor: pointer;
+}
+@media screen and (min-width: 576px) {
+  .navLogoWrapper.navLogoLarge {
+    display: flex;
+  }
+  .navLogoWrapper.navLogoSmall {
+    display: none;
+  }
 }
