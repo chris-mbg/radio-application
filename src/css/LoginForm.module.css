@@ -1,6 +1,11 @@
+.loginForm {
+  margin-bottom: 2rem;
+  max-width: 400px;
+}
 .loginForm form {
   display: flex;
   flex-flow: column nowrap;
+  max-width: 400px;
 }
 .loginForm input {
   margin: 1rem auto;

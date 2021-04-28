@@ -14,7 +14,7 @@ const RegisterLogInModal = ({ isVisible, hideModal }) => {
           <button className={styles.closeButton}>X</button>
         </div>
         <div className={styles.contentContainer}>
-          <h1>Logga in på ditt konto, eller registrera dig som ny användare här.</h1>
+          {/* <h1>Logga in på ditt konto, eller registrera dig som ny användare här.</h1> */}
           <div className={styles.componentsContainer}>
             <LoginForm hideModal={hideModal} />
             <RegisterForm hideModal={hideModal}/>
