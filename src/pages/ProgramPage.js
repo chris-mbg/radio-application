@@ -2,35 +2,37 @@ import { useContext, useEffect, useState } from "react";
 import { FavouriteContext } from "../contexts/FavouriteContext";
 import { RadioContext } from "../contexts/RadioContext";
 import styles from "../css/ProgramPage.module.css";
+import useIsMountedRef from "../hooks/useIsMountedRef";
 
 const ProgramPage = (props) => {
   const { programId } = props.match.params;
-  const {
-    fetchProgramInfo,
-    fetchProgramSchedule,
-    fetchAllEpisodesForProgram,
-  } = useContext(RadioContext);
-  const { userFavourites, addUserFavourite, deleteUserFavourite } = useContext(
-    FavouriteContext
-  );
+  const { fetchProgramInfo, fetchProgramSchedule } = useContext(RadioContext);
+  const { userFavourites, addUserFavourite, deleteUserFavourite } = useContext(FavouriteContext);
   const [programInfo, setProgramInfo] = useState(null);
   const [programSchedule, setProgramSchedule] = useState(null);
 
+  const isMounted = useIsMountedRef();
+
   const fetchData = async () => {
     let result = await fetchProgramInfo(programId);
-    console.log(result);
-    setProgramInfo(result);
+    if (isMounted.current) {
+      setProgramInfo(result);
+    }
   };
   const fetchScheduleData = async () => {
     let result = await fetchProgramSchedule(programId);
-    console.log(result);
-    setProgramSchedule(result);
+    if (isMounted.current) {
+      setProgramSchedule(result);
+    }
   };
 
   useEffect(() => {
-    fetchData();
-    fetchScheduleData();
+    if (isMounted.current) {
+      fetchData();
+      fetchScheduleData();
+    }
   }, []);
+
   useEffect(() => window.scrollTo(0, 0), []);
 
   const handleHeartClick = () => {
@@ -38,7 +40,6 @@ const ProgramPage = (props) => {
       const alreadyFav = userFavourites.programs.some(
         (p) => p.programId === parseInt(programId)
       );
-      console.log("want to add fav", alreadyFav);
       alreadyFav
         ? deleteUserFavourite({ programId: programInfo.id })
         : addUserFavourite({
@@ -92,7 +93,7 @@ const ProgramPage = (props) => {
             )}
           </div>
           <div className={styles.imgWrapper}>
-            <img src={programInfo.programimage} />
+            <img src={programInfo.programimage} alt="" />
           </div>
         </div>
         {programSchedule && programSchedule.broadcasts.length > 0 ? (

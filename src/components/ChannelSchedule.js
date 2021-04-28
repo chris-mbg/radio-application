@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { FavouriteContext } from "../contexts/FavouriteContext";
 import { RadioContext } from "../contexts/RadioContext";
 import styles from "../css/ChannelSchedule.module.css";
+import useIsMountedRef from "../hooks/useIsMountedRef";
 
 const ChannelSchedule = ({channelId}) => {
   const history = useHistory();
@@ -11,13 +12,17 @@ const ChannelSchedule = ({channelId}) => {
   const { fetchChannelSchedule } = useContext(RadioContext);
   const { userFavourites, addUserFavourite, deleteUserFavourite } = useContext(FavouriteContext);
 
+  const isMounted = useIsMountedRef();
+
   const handleDateChange = e => {
     setScheduleDate(e.target.value);
   }
 
   const fetchData = async (channelId, date) => {
     const result = await fetchChannelSchedule(channelId, date);
-    setChannelSchedule(result);
+    if(isMounted.current) {
+      setChannelSchedule(result);
+    }
   };
 
   // eslint-disable-next-line
@@ -27,9 +32,8 @@ const ChannelSchedule = ({channelId}) => {
   useEffect(() => console.log('kanaltablå', channelSchedule), [channelSchedule]);
 
   const handleHeartClick = (favInfo) => {
-    if (userFavourites){
+    if (userFavourites) {
       const alreadyFav = userFavourites.programs.some(prog => prog.programId ===  favInfo.programId);
-      console.log('want to add fav', alreadyFav);
       alreadyFav ? deleteUserFavourite({ programId: favInfo.programId}) : addUserFavourite(favInfo);
     } else {
       return

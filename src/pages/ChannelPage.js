@@ -4,6 +4,7 @@ import ProgramList from "../components/ProgramList";
 import { FavouriteContext } from "../contexts/FavouriteContext";
 import { RadioContext } from "../contexts/RadioContext";
 import styles from "../css/ChannelPage.module.css";
+import useIsMountedRef from "../hooks/useIsMountedRef";
 
 const ChannelPage = (props) => {
   const { channelId } = props.match.params;
@@ -11,14 +12,21 @@ const ChannelPage = (props) => {
   const { userFavourites, addUserFavourite, deleteUserFavourite } = useContext(FavouriteContext);
   const [channelInfo, setChannelInfo] = useState(null);
 
-  console.log( props.match.params)
+  const isMounted = useIsMountedRef();
+
   const fetchData = async (channelId, fetchMethod) => {
     const result = await fetchMethod(channelId);
-    setChannelInfo(result);
+    if(isMounted.current) {
+      setChannelInfo(result);
+    }
   };
 
-  // eslint-disable-next-line
-  useEffect( () => fetchData(channelId, fetchSingleChannel), []);
+  useEffect( () => {
+    if (isMounted.current) {
+      fetchData(channelId, fetchSingleChannel)
+    }
+  }, []);
+
   useEffect(() => window.scrollTo(0, 0), []);
 
   useEffect( () => {
