@@ -10,7 +10,6 @@ const getAllChannels = async (req, res) => {
     `http://api.sr.se/api/v2/channels?${jsonFormat}&${paginationFalse}`
   );
   channelsList = await channelsList.json();
-
   res.json(channelsList.channels);
   // The response is now just the array with all the channel objects.
 };
@@ -28,7 +27,6 @@ const getChannelSchedule = async (req, res) => {
     `http://api.sr.se/api/v2/scheduledepisodes?${jsonFormat}&${paginationFalse}&channelId=${req.params.channelId}&date=${req.query.date}`
   );
   channelSchedule = await channelSchedule.json();
-
   channelSchedule.schedule = channelSchedule.schedule.map((prog) => {
     return {
       ...prog,

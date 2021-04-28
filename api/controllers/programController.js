@@ -13,22 +13,28 @@ const getAllProgramsForOneChannel = async (req, res) => {
   res.json(programList.programs);
 };
 
-const getProgramById = async (req,res) => {
-  let program = await fetch(`http://api.sr.se/api/v2/programs/${req.params.programId}?${jsonFormat}`);
+const getProgramById = async (req, res) => {
+  let program = await fetch(
+    `http://api.sr.se/api/v2/programs/${req.params.programId}?${jsonFormat}`
+  );
   program = await program.json();
   res.json(program.program);
 };
 
-const getProgramSchedule = async (req,res) => {
-  let programBroadcasts = await fetch(`http://api.sr.se/api/v2/broadcasts?${jsonFormat}&${paginationFalse}&programid=${req.params.programId}`);
+const getProgramSchedule = async (req, res) => {
+  let programBroadcasts = await fetch(
+    `http://api.sr.se/api/v2/broadcasts?${jsonFormat}&${paginationFalse}&programid=${req.params.programId}`
+  );
   programBroadcasts = await programBroadcasts.json();
 
-  programBroadcasts.broadcasts = programBroadcasts.broadcasts.map((broadcast) => {
-    return {
-      ...broadcast,
-      broadcastdateutc: convertToDateObject(broadcast.broadcastdateutc),
-    };
-  });
+  programBroadcasts.broadcasts = programBroadcasts.broadcasts.map(
+    (broadcast) => {
+      return {
+        ...broadcast,
+        broadcastdateutc: convertToDateObject(broadcast.broadcastdateutc),
+      };
+    }
+  );
 
   res.json(programBroadcasts);
 };
@@ -36,5 +42,5 @@ const getProgramSchedule = async (req,res) => {
 module.exports = {
   getAllProgramsForOneChannel,
   getProgramById,
-  getProgramSchedule
+  getProgramSchedule,
 };

@@ -3,11 +3,12 @@ const fetch = require("node-fetch");
 const jsonFormat = "format=json";
 const paginationFalse = "pagination=false";
 
-// ! Delete if unused!
 const convertToDateObject = require("../core/convertToDateObject");
 
 const getAllEpisodesForProgram = async (req, res) => {
-  let episodeList = await fetch(`http://api.sr.se/api/v2/episodes/index?${jsonFormat}&${paginationFalse}&programid=${req.params.programId}&fromdate=2021-01-01`);
+  let episodeList = await fetch(
+    `http://api.sr.se/api/v2/episodes/index?${jsonFormat}&${paginationFalse}&programid=${req.params.programId}&fromdate=2021-01-01`
+  );
   episodeList = await episodeList.json();
 
   episodeList.episodes = episodeList.episodes.map((episode) => {
@@ -16,8 +17,8 @@ const getAllEpisodesForProgram = async (req, res) => {
       publishdateutc: convertToDateObject(episode.publishdateutc),
       broadcasttime: {
         starttimeutc: convertToDateObject(episode.broadcasttime.starttimeutc),
-        endtimeutc: convertToDateObject(episode.broadcasttime.endtimeutc)
-      }
+        endtimeutc: convertToDateObject(episode.broadcasttime.endtimeutc),
+      },
     };
   });
 
@@ -25,5 +26,5 @@ const getAllEpisodesForProgram = async (req, res) => {
 };
 
 module.exports = {
-  getAllEpisodesForProgram
-}
+  getAllEpisodesForProgram,
+};
