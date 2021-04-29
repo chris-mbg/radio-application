@@ -53,7 +53,6 @@ const UserContextProvider = (props) => {
     let result = await fetch("/api/v1/users/logout");
     result = await result.json();
     if (result.success) {
-      console.log("User logged out");
       setUserLoggedIn(null);
       history.push("/");
     }
@@ -68,7 +67,6 @@ const UserContextProvider = (props) => {
       body: JSON.stringify(newUserInput),
     });
     result = await result.json();
-    console.log("User registered?", result);
     if (result.success) {
       loggedInCheck();
       history.push("/");
@@ -96,9 +94,7 @@ const UserContextProvider = (props) => {
       body: JSON.stringify(userToEditInput),
     });
     result = await result.json();
-    console.log('EditUser in UserContext', result);
     if (result.success) {
-      //getUserById(userLoggedIn.userId)
       loggedInCheck();
       return result
     }

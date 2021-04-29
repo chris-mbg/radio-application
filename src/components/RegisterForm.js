@@ -34,7 +34,6 @@ const RegisterForm = ({hideModal}) => {
   const handleRegSubmit = async (e) => {
     e.preventDefault();
     const passwordOK = passwordRegex.test(password);
-    console.log('Password OK?', passwordOK);
     if(!passwordOK) {
       return
     } else {

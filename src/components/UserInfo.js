@@ -10,19 +10,18 @@ const UserInfo = () => {
   useEffect(() => {
     if (userLoggedIn) setEmail(userLoggedIn.userEmail);
   }, [userLoggedIn]);
-  //useEffect(()=> loggedInCheck(), []);
 
   const toggleEditMode = () => setEditModeOn((prevState) => !prevState);
 
   const handleDeleteClick = () => {
-    console.log("Vill bli raderad. userId:", userLoggedIn.userId);
     deleteUser(userLoggedIn.userId);
   };
 
-  const handleEditSubmit = async () => {
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
     let result = await editUser({ email: email });
     if(result.success) {
-
+      toggleEditMode();
     }
   };
 
