@@ -36,7 +36,6 @@ const ChannelPage = (props) => {
   const handleHeartClick = () => {
     if(userFavourites) {
       const alreadyFav = userFavourites.channels.some(ch => ch.channelId ===  parseInt(channelId));
-      console.log('want to add fav', alreadyFav);
       if(!alreadyFav) {
         addUserFavourite({ channelId: channelInfo.id, channelName: channelInfo.name });
       } else {
@@ -50,7 +49,7 @@ const ChannelPage = (props) => {
   const renderChannelContent = () => {
     return (
       <div>
-        <h1>{channelInfo.name}
+        <h1 className={styles.heading}>{channelInfo.name}
           <span className="favouriteIconWrapper">
             {userFavourites ?
               (userFavourites.channels.some(ch => ch.channelId === parseInt(channelId)) ?
@@ -61,21 +60,17 @@ const ChannelPage = (props) => {
             }
           </span>
         </h1>
-        {/* <p>{channelInfo.channeltype}</p> */}
         <p className={styles.tagline}>{channelInfo.tagline}</p>
-        {/* <div className={styles.imgWrapper}>
-          <img src={channelInfo.image} alt="channel logo"/>
-        </div> */}
       </div>
-      )
+    )
   }
 
   return (
     <div className={styles.channelPageContainer}>
       {channelInfo ? renderChannelContent() : <p>Loading...</p>}
       <div className={styles.pageCompContainer}>
-        <ChannelSchedule channelId={channelId}/>
         <ProgramList channelId={channelId}/>
+        <ChannelSchedule channelId={channelId}/>
       </div>
     </div>
   );

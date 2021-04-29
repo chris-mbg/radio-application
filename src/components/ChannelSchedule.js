@@ -48,6 +48,7 @@ const ChannelSchedule = ({channelId}) => {
           <br />
           <input type="date" onChange={handleDateChange}/>
         </div>
+        <div className={styles.allProgContainer}>
         {channelSchedule.map(prog => (
           prog.program.name ? (
             <div key={prog.starttimeutc} className={styles.programContainer}>
@@ -68,6 +69,7 @@ const ChannelSchedule = ({channelId}) => {
             </div>
           ) : null
         ))}
+        </div>
       </div>
     )
   }

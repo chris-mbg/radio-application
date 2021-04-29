@@ -13,24 +13,22 @@ const ProgramList = ({ channelId }) => {
 
   const fetchData = async (channelId) => {
     const result = await fetchProgramsForChannel(channelId);
-    if(isMounted.current) {
+    if (isMounted.current) {
       setProgramList(result);
     }
   };
 
   useEffect(() => {
-    if(isMounted.current) {
-      fetchData(channelId)
+    if (isMounted.current) {
+      fetchData(channelId);
     }
   }, []);
 
-  //useEffect(() => console.log(programList), [programList]);
-
   const renderProgramList = () => {
+    // Do not show archived programs in the list.
     const listToShow = programList.filter((prog) => prog.archived === false);
-    //console.log("fr render func", listToShow);
     return (
-      <ul>
+      <ul className={styles.programList}>
         {listToShow.map((prog) => (
           <li key={prog.id} onClick={() => history.push(`/program/${prog.id}`)}>
             {prog.name}
@@ -42,7 +40,11 @@ const ProgramList = ({ channelId }) => {
 
   return (
     <div className={styles.programListContainer}>
-      {programList && programList.length > 0 ? (<h2>Alla program i {programList[0].channel.name}</h2>) : <h2>Inga program finns tillgängliga för kanalen</h2>}
+      {programList && programList.length > 0 ? (
+        <h2>Alla program i {programList[0].channel.name}</h2>
+      ) : (
+        <h2>Inga program finns tillgängliga för kanalen</h2>
+      )}
       {programList ? renderProgramList() : null}
     </div>
   );
