@@ -16,7 +16,6 @@ const getAllProgramsInCategory = async (req, res) => {
     `http://api.sr.se/api/v2/programs/index?${jsonFormat}&${paginationFalse}&programcategoryid=${req.params.categoryId}`
   );
   programList = await programList.json();
-
   res.json(programList.programs);
 };
 

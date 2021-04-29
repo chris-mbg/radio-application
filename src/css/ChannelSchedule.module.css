@@ -1,6 +1,8 @@
-.channelScheduleContainer {
+.compContainer {
   max-width: 600px;
-  margin: 2rem 0;
+  margin: 1rem auto;
+}
+.allProgContainer {
   padding: 0 0.5rem;
 }
 .datePickWrapper {
@@ -39,19 +41,19 @@ span.desc.hideMobile {
   display: none;
 }
 
-.channelScheduleContainer::-webkit-scrollbar-track {
+.allProgContainer::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: #3d362b;
 }
 
-.channelScheduleContainer::-webkit-scrollbar {
+.allProgContainer::-webkit-scrollbar {
   width: 8px;
   background-color: #3d362b;
 }
 
-.channelScheduleContainer::-webkit-scrollbar-thumb {
+.allProgContainer::-webkit-scrollbar-thumb {
   border-radius: 5px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -60,11 +62,16 @@ span.desc.hideMobile {
 
 @media screen and (min-width: 576px) {
   .channelScheduleContainer {
-    margin: 2rem 1rem;
-    max-height: 150vh;
-    overflow-y: scroll;
+    margin: 0 1rem;
     padding: 0 1rem;
   }
+  .allProgContainer {
+    max-height: 150vh;
+    overflow-y: scroll;
+  }
+
+}
+@media screen and (min-width: 768px) {
   span.desc.hideMobile {
     display: inline;
   }
