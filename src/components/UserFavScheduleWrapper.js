@@ -42,7 +42,6 @@ const UserFavScheduleWrapper = () => {
 
   return (
     <div className={styles.componentContainer}>
-      <h3>Tablåer för dina kanaler</h3>
       <div className={styles.schedulesContainer}>
         {userFavourites && scheduleToShow ? (
           renderScheduleTabs()
