@@ -19,6 +19,13 @@
   position: relative;
   padding-top: 50px;
   color: #f34508;
+  text-align: center;
+}
+.heroText h1 {
+  display: inline-block;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #3d362b88;
 }
 .explain {
   background-color: #aeaeb2ad;
@@ -50,3 +57,16 @@
     background-position: center;
   }
 }
+
+/* * COLOR CODES! */
+/*  Nearly black:   #251e18
+    Dark Grey:      #3d362b
+    Darker green    #3a5e27
+    Lighter green   #859448
+    Orange          #f75A0d
+    Red orange      #f34508
+
+    Text colors:
+    Standard: Nearly white  #f5f5fa
+    Disabled: Greyish:      #aeaeb2
+*/

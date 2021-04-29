@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { RadioContext } from '../contexts/RadioContext';
 import styles from '../css/CardWrapper.module.css'
 import ChannelCard from './ChannelCard';
@@ -7,8 +7,6 @@ const CardWrapper = () => {
 
   const { allChannels } = useContext(RadioContext);
   const [showAllChannels, setShowAllChannels] = useState(false);
-
-  useEffect(()=> console.log(allChannels), [allChannels]);
 
   const renderShortChannelCards = () => {
     const fewChannels = allChannels.slice(0,8);

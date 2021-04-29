@@ -3,26 +3,25 @@ import { UserContext } from "../contexts/UserContext";
 import styles from "../css/UserInfo.module.css";
 
 const UserInfo = () => {
-  const { userLoggedIn, editUser, deleteUser, loggedInCheck } = useContext(UserContext);
+  const { userLoggedIn, editUser, deleteUser } = useContext(UserContext);
   const [editModeOn, setEditModeOn] = useState(false);
   const [email, setEmail] = useState(null);
 
   useEffect(() => {
     if (userLoggedIn) setEmail(userLoggedIn.userEmail);
   }, [userLoggedIn]);
-  //useEffect(()=> loggedInCheck(), []);
 
   const toggleEditMode = () => setEditModeOn((prevState) => !prevState);
 
   const handleDeleteClick = () => {
-    console.log("Vill bli raderad. userId:", userLoggedIn.userId);
     deleteUser(userLoggedIn.userId);
   };
 
-  const handleEditSubmit = async () => {
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
     let result = await editUser({ email: email });
     if(result.success) {
-
+      toggleEditMode();
     }
   };
 
