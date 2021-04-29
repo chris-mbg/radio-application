@@ -5,7 +5,6 @@ const sqlite3 = require("sqlite3");
 const db = new sqlite3.Database(path.join(__dirname, "../../radioAppDB.db"));
 
 const whoami = (req, res) => {
-  console.log("From whoami", req.session.user);
   res.json(req.session.user || null);
 };
 
@@ -52,7 +51,6 @@ const getUserById = (req, res) => {
 
 const registerNewUser = (req, res) => {
   const userToReg = req.body;
-  console.log("In user controller, user To reg:", userToReg);
 
   // Validate email.
   const emailRegex = /^[^@\s]+@\w+(\.\w+)+\w$/gm;
@@ -98,7 +96,6 @@ const registerNewUser = (req, res) => {
             } else {
               delete newUser.password;
               req.session.user = newUser;
-              console.log("Req.session.user", req.session.user);
               res.json({
                 success: "User registered and logged in.",
                 lastID: this.lastID,
@@ -121,7 +118,6 @@ const editUserById = (req, res) => {
   }
   db.run(query, params, function (err) {
     if (err) {
-      console.log("Error in edit:", err);
       res.json({ error: err });
     } else {
       req.session.user.email = req.body.email;
@@ -148,7 +144,6 @@ const deleteUserById = (req, res) => {
       res.json({ error: err });
     } else {
       delete req.session.user;
-      console.log("In delete user", req.session.user);
       res.json({ success: "User deleted", changes: this.changes });
     }
   });
@@ -197,7 +192,6 @@ const getAllSavedFavouritesForUser = (req, res) => {
 };
 
 const saveFavouriteToUser = (req, res) => {
-  console.log("From saveFavToUser. session-user:", req.session.user);
   if (req.body.channelId) {
     let query = /*sql*/ `INSERT INTO channels (channelId, channelName, userId) VALUES ($channelId, $channelName, $userId)`;
     let params = {
@@ -207,7 +201,6 @@ const saveFavouriteToUser = (req, res) => {
     };
     db.run(query, params, function (err, result) {
       if (err) {
-        console.log(err);
         res.status(400).json({ error: err });
         return;
       } else {
@@ -244,7 +237,6 @@ const saveFavouriteToUser = (req, res) => {
     };
     db.run(query, params, function (err, result) {
       if (err) {
-        console.log("Error:", err);
         res.status(400).json({ error: err });
         return;
       } else {
@@ -294,7 +286,6 @@ const deleteUserFavourite = (req, res) => {
     query = /*sql*/ `DELETE FROM programs WHERE userId = $userId AND programId = $programId`;
     db.run(query, params, function (err) {
       if (err) {
-        console.log(err);
         res.json({ error: err });
       } else {
         res.json({
@@ -316,7 +307,6 @@ const deleteUserFavourite = (req, res) => {
     query = /*sql*/ `DELETE FROM episodes WHERE userId = $userId AND episodeId = $episodeId`;
     db.run(query, params, function (err) {
       if (err) {
-        console.log(err);
         res.json({ error: err });
       } else {
         res.json({
