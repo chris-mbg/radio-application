@@ -25,13 +25,10 @@ const ChannelPage = (props) => {
     if (isMounted.current) {
       fetchData(channelId, fetchSingleChannel)
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => window.scrollTo(0, 0), []);
-
-  useEffect( () => {
-    console.log('Channel Info:', channelInfo);
-  }, [channelInfo]);
 
   const handleHeartClick = () => {
     if(userFavourites) {

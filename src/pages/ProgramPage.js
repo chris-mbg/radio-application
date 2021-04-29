@@ -31,6 +31,7 @@ const ProgramPage = (props) => {
       fetchData();
       fetchScheduleData();
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => window.scrollTo(0, 0), []);

@@ -10,7 +10,6 @@ const FavouriteContextProvider = (props) => {
 
   const getAllUserFavourites = async () => {
     if(userLoggedIn) {
-      console.log('From FavContext getting favourites...');
       let favoritesList = await fetch(`/api/v1/users/favourites`);
       favoritesList = await favoritesList.json();
       setUserFavourites(favoritesList);
@@ -48,6 +47,7 @@ const FavouriteContextProvider = (props) => {
 
   useEffect(() => {
     if(userLoggedIn) getAllUserFavourites();
+    // eslint-disable-next-line
   }, [userLoggedIn]);
 
   const values = {

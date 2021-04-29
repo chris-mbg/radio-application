@@ -3,7 +3,7 @@ import { UserContext } from "../contexts/UserContext";
 import styles from "../css/UserInfo.module.css";
 
 const UserInfo = () => {
-  const { userLoggedIn, editUser, deleteUser, loggedInCheck } = useContext(UserContext);
+  const { userLoggedIn, editUser, deleteUser } = useContext(UserContext);
   const [editModeOn, setEditModeOn] = useState(false);
   const [email, setEmail] = useState(null);
 

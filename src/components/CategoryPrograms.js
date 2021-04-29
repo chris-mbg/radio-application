@@ -15,10 +15,9 @@ const CategoryPrograms = ({categoryId}) => {
       setProgramList(result);
     }
   }
-
+  
+  // eslint-disable-next-line
   useEffect(() => fetchData(), [categoryId]);
-
-  useEffect( () => console.log('In categoryProg', programList),[programList]);
 
   const handleProgramNameClick = programId => {
     console.log('Clicked on a name', programId);

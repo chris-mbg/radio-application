@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { FavouriteContext } from "../contexts/FavouriteContext";
 import styles from "../css/UserFavourites.module.css";
@@ -7,8 +7,6 @@ import UserFavScheduleWrapper from './UserFavScheduleWrapper'
 const UserFavourites = () => {
   const history = useHistory();
   const { userFavourites } = useContext(FavouriteContext);
-
-  useEffect(() => console.log("favoriter", userFavourites), [userFavourites]);
 
   const renderUserFav = () => {
     return (

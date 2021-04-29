@@ -22,6 +22,7 @@ const ProgramList = ({ channelId }) => {
     if (isMounted.current) {
       fetchData(channelId);
     }
+    // eslint-disable-next-line
   }, []);
 
   const renderProgramList = () => {
