@@ -29,7 +29,6 @@ const ChannelSchedule = ({channelId}) => {
   useEffect(() => fetchData(channelId, scheduleDate), []);
   // eslint-disable-next-line
   useEffect(() => fetchData(channelId, scheduleDate), [scheduleDate]);
-  useEffect(() => console.log('kanaltablå', channelSchedule), [channelSchedule]);
 
   const handleHeartClick = (favInfo) => {
     if (userFavourites) {
@@ -43,7 +42,7 @@ const ChannelSchedule = ({channelId}) => {
   const renderSchedule = () => {
     return (
       <div className={styles.channelScheduleContainer}>
-        <h2>Tablå för {channelSchedule[0].starttimeutc.substring(0,10)}</h2>
+        <h2>Tablå för {channelSchedule[0].channel.name} {channelSchedule[0].starttimeutc.substring(0,10)}</h2>
         <div className={styles.datePickWrapper}>
           <label>Ändra datum?</label>
           <br />
@@ -53,8 +52,8 @@ const ChannelSchedule = ({channelId}) => {
           prog.program.name ? (
             <div key={prog.starttimeutc} className={styles.programContainer}>
               <p>Kl {prog.starttimeutc.substring(11,16)}
-                <span onClick={() => history.push(`/program/${prog.program.id}`)} className={styles.programName}> {prog.program.name} - </span>
-                <span className={styles.desc}>{prog.description}</span>
+                <span onClick={() => history.push(`/program/${prog.program.id}`)} className={styles.programName}>  {prog.program.name}  </span>
+                <span className={`${styles.desc} ${styles.hideMobile}`}>- {prog.description}</span>
               </p>
               <div className={styles.favouriteIconWrapper}>
                 {userFavourites && prog.program.id !== prog.channel.id ?

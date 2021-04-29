@@ -1,9 +1,7 @@
 .channelScheduleContainer {
   max-width: 600px;
-  margin: 2rem 1rem;
-  max-height: 150vh;
-  overflow-y: scroll;
-  padding: 0 1rem;
+  margin: 2rem 0;
+  padding: 0 0.5rem;
 }
 .datePickWrapper {
   text-align: right;
@@ -37,6 +35,9 @@ span.desc {
   font-size: 0.8rem;
   color: #aeaeb2;
 }
+span.desc.hideMobile {
+  display: none;
+}
 
 .channelScheduleContainer::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -55,4 +56,16 @@ span.desc {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #859448;
+}
+
+@media screen and (min-width: 576px) {
+  .channelScheduleContainer {
+    margin: 2rem 1rem;
+    max-height: 150vh;
+    overflow-y: scroll;
+    padding: 0 1rem;
+  }
+  span.desc.hideMobile {
+    display: inline;
+  }
 }
