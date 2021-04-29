@@ -30,6 +30,12 @@ const ChannelSchedule = ({channelId}) => {
   // eslint-disable-next-line
   useEffect(() => fetchData(channelId, scheduleDate), [scheduleDate]);
 
+  const handleProgNameClick = (progId, channelId) => {
+    if(progId !== channelId) {
+      history.push(`/program/${progId}`);
+    }
+  }
+
   const handleHeartClick = (favInfo) => {
     if (userFavourites) {
       const alreadyFav = userFavourites.programs.some(prog => prog.programId ===  favInfo.programId);
@@ -53,7 +59,7 @@ const ChannelSchedule = ({channelId}) => {
           prog.program.name ? (
             <div key={prog.starttimeutc} className={styles.programContainer}>
               <p>Kl {prog.starttimeutc.substring(11,16)}
-                <span onClick={() => history.push(`/program/${prog.program.id}`)} className={styles.programName}>  {prog.program.name}  </span>
+                <span onClick={() => handleProgNameClick(prog.program.id, prog.channel.id)} className={styles.programName}>  {prog.program.name}  </span>
                 <span className={`${styles.desc} ${styles.hideMobile}`}>- {prog.description}</span>
               </p>
               <div className={styles.favouriteIconWrapper}>
