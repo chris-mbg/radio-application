@@ -9,14 +9,16 @@ const port = 3001;
 const channelPrefix = '/api/v1/channels';
 const programPrefix = '/api/v1/programs';
 const episodePrefix = '/api/v1/episodes';
-const categoryPrefix = '/api/v1/categories'
-const userPrefix = "/api/v1/users"
+const categoryPrefix = '/api/v1/categories';
+const userPrefix = "/api/v1/users";
+const favouritePrefix = "/api/v1/favourites";
 
 const channelRoutes = require("./routes/channelRoutes");
 const programRoutes = require("./routes/programRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const episodeRoutes = require("./routes/episodeRoutes");
 const userRoutes = require("./routes/userRoutes");
+const favouriteRoutes = require("./routes/favouriteRoutes");
 
 const app = express();
 
@@ -38,8 +40,9 @@ app.use(programPrefix, programRoutes);
 app.use(categoryPrefix, categoryRoutes);
 app.use(episodePrefix, episodeRoutes);
 app.use(userPrefix, userRoutes);
+app.use(favouritePrefix, favouriteRoutes);
 
-// The build folder is now avaliable for the backend. Can run the application via the backend
+// On build is the folder now avaliable for the backend and the app can be run via BE.
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.listen(port, err => {
