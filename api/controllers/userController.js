@@ -137,14 +137,33 @@ const deleteUserById = (req, res) => {
       .json({ error: `The user with id:${req.params.userId} does not exist` });
     return;
   }
-
   query = /*sql*/ `DELETE FROM users WHERE userId = $id`;
   db.run(query, params, function (err) {
     if (err) {
       res.json({ error: err });
     } else {
       delete req.session.user;
-      res.json({ success: "User deleted", changes: this.changes });
+      // Delete favourites (channels and programs) associated with user
+      let query = /*sql*/ `DELETE FROM channels WHERE userId = $id`;
+      db.run(query, params, function (err) {
+        if (err) {
+          res.json({ error: err });
+          return;
+        } else {
+          query = /*sql*/ `DELETE FROM programs WHERE userId = $id`;
+          db.run(query, params, function (err) {
+            if (err) {
+              res.json({ error: err });
+              return;
+            } else {
+              res.json({
+                success: "User and associated favourites deleted",
+                changes: this.changes,
+              });
+            }
+          });
+        }
+      });
     }
   });
 };
@@ -156,5 +175,5 @@ module.exports = {
   getUserById,
   registerNewUser,
   editUserById,
-  deleteUserById
+  deleteUserById,
 };
