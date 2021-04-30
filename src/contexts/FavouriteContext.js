@@ -10,14 +10,14 @@ const FavouriteContextProvider = (props) => {
 
   const getAllUserFavourites = async () => {
     if(userLoggedIn) {
-      let favoritesList = await fetch(`/api/v1/users/favourites`);
+      let favoritesList = await fetch(`/api/v1/favourites`);
       favoritesList = await favoritesList.json();
       setUserFavourites(favoritesList);
     }
   };
 
   const addUserFavourite = async favouriteInfo => {
-      let result = await fetch("/api/v1/users/favourites", {
+      let result = await fetch("/api/v1/favourites", {
         method: "POST",
         headers: {
         "content-type": "application/json",
@@ -32,7 +32,7 @@ const FavouriteContextProvider = (props) => {
   };
 
   const deleteUserFavourite = async favouriteId => {
-    let result = await fetch("/api/v1/users/favourites", {
+    let result = await fetch("/api/v1/favourites", {
       method: "DELETE",
       headers: {
       "content-type": "application/json",
