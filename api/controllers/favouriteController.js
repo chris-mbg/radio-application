@@ -1,13 +1,10 @@
 const path = require("path");
-const encrypt = require("../core/encrypt");
 
 const sqlite3 = require("sqlite3");
 const db = new sqlite3.Database(path.join(__dirname, "../../radioAppDB.db"));
 
-
 const getAllSavedFavouritesForUser = (req, res) => {
   const allUserFavourites = {};
-
   db.all(
     /*sql*/ `SELECT * FROM channels WHERE userId = $id`,
     { $id: req.session.user.userId },
@@ -177,5 +174,5 @@ const deleteUserFavourite = (req, res) => {
 module.exports = {
   getAllSavedFavouritesForUser,
   saveFavouriteToUser,
-  deleteUserFavourite
-}
+  deleteUserFavourite,
+};
