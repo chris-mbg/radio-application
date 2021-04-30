@@ -1,0 +1,82 @@
+/* General styles */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&family=Montserrat:ital,wght@0,100;0,200;0,400;0,500;0,700;1,200&display=swap');
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  text-align: center;
+}
+
+button {
+  margin: 1rem auto;
+  width: 120px;
+  height: 40px;
+  color: #251e18;
+  background-color: #f75A0d;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: 'Montserrat';
+  border-radius: 5px;
+  transition: 0.2s;
+}
+button:hover {
+  box-shadow: 0 0px 20px 2px #f75A0d;
+  filter: brightness(1.1);
+}
+button:active, button:focus {
+  outline: none;
+}
+input {
+  font-size: 1.3rem;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.App {
+  margin: 0;
+  background-color: #3d362b;
+  color: #f5f5fa;
+  min-height: 93vh;
+  /* width: 100vh; */
+  position: relative;
+  padding-bottom: 70px;
+}
+div.favouriteIconWrapper {
+  position: absolute;
+  text-align: right;
+  top: 1rem;
+  right: 1rem;
+}
+span.favouriteIconWrapper {
+  font-size: 1rem;
+  margin: 0 1rem;
+}
+i.likeIcon {
+  color: #f75A0d;
+  cursor: pointer;
+}
+i.likeIcon:hover {
+  text-shadow: 0 0 1rem #f75A0d;
+  filter: brightness(1.1);
+}
+
+/* * COLOR CODES! */
+/*  Nearly black:   #251e18
+    Dark Grey:      #3d362b
+    Darker green    #3a5e27
+    Lighter green   #859448
+    Orange          #f75A0d
+    Red orange      #f34508
+
+    Text colors:
+    Standard: Nearly white  #f5f5fa
+    Disabled: Greyish:      #aeaeb2
+*/

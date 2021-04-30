@@ -1,0 +1,56 @@
+.catName {
+  color: #859448;
+  font-size: 1.6rem;
+}
+.programWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background-color: #251e18;
+  border-radius: 10px;
+  margin: 0.5rem;
+  /* padding: 0.5rem; */
+}
+.programName {
+  color: #f5f5fa;
+  font-weight: 500;
+  margin: 0.5rem;
+  background-color: #3d362b;
+  box-shadow: 2px 2px 8px #aeaeb277;
+  text-align: center;
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.programName:hover {
+  box-shadow: 4px 4px 10px #85944877;
+  filter: brightness(1.1);
+}
+.programName p {
+  margin: 0;
+}
+@media screen and (min-width: 576px) {
+  .programWrapper {
+    margin: 1rem;
+  }
+  .programName {
+    width: 180px;
+    height: 60px;
+  }
+}
+
+/* * COLOR CODES! */
+/*  Nearly black:   #251e18
+    Dark Grey:      #3d362b
+    Darker green    #3a5e27
+    Lighter green   #859448
+    Orange          #f75A0d
+    Red orange      #f34508
+
+    Text colors:
+    Standard: Nearly white  #f5f5fa
+    Disabled: Greyish:      #aeaeb2
+*/

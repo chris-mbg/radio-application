@@ -1,0 +1,27 @@
+.loginForm {
+  margin-bottom: 2rem;
+  max-width: 400px;
+}
+.loginForm form {
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: 400px;
+}
+.loginForm input {
+  margin: 1rem auto;
+}
+.wrong {
+  font-size: 0.9rem;
+  color: #f24607;
+}
+.wrong::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 0.7rem;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f00d"
+}

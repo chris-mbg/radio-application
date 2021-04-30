@@ -1,0 +1,45 @@
+.programListContainer {
+  max-width: 350px;
+  margin: 1rem auto;
+}
+.programList {
+  max-height: 60vh;
+  overflow-y: scroll;
+  padding: 0;
+  list-style-type: none;
+}
+
+.programList li {
+  line-height: 1.8rem;
+  padding-left: 1rem;
+  cursor: pointer;
+}
+.programList li:nth-child(2n) {
+  background-color: #aeaeb246;
+  margin-right: 0.5rem;
+}
+.programList li:hover {
+  filter: sepia(50%);
+  color: #859448;
+  /* background-color: #85944831;
+  margin-right: 0.5rem; */
+}
+
+.programList::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  background-color: #3d362b;
+}
+
+.programList::-webkit-scrollbar {
+  width: 7px;
+  background-color: #3d362b;
+}
+
+.programList::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #859448;
+}

@@ -1,0 +1,72 @@
+.userFavContainer {
+  background-color: #251e18;
+  border-radius: 5px;
+  margin: 2rem 1rem;
+  padding: 1rem 1rem 2rem 1rem;
+  box-shadow: 2px 3px 8px 0 #aeaeb233;
+}
+.heading {
+  font-size: 1.8rem;
+}
+.channelFavWrapper {
+  margin: 1rem 0;
+  background-color: #3d362b;
+  border-radius: 5px;
+  text-align: center;
+  padding: 1rem 0;
+}
+.channelFavWrapper h3 {
+  color: #859448;
+  font-size: 1.3rem;
+}
+.channelFavWrapper p {
+  cursor: pointer;
+  display: inline-block;
+  color: #f5f5fa;
+  font-weight: 500;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #3d362bf5;
+  box-shadow: 0px 0px 8px #85944877;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid #85944877;
+}
+.channelFavWrapper p:hover {
+  box-shadow: 0px 0px 10px #f5f5fa77;
+  /* filter: brightness(1.1); */
+}
+@media screen and (min-width: 576px) {
+  .allFavWrapper {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .channelFavWrapper {
+    width: 45%;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width:768px) {
+  .userFavContainer {
+    margin: 1rem 2rem;
+  }
+}
+@media screen and (min-width:992px) {
+  .allFavWrapper {
+    max-width: 1100px;
+    margin: 1rem auto;
+  }
+}
+
+/* * COLOR CODES! */
+/*  Nearly black:   #251e18
+    Dark Grey:      #3d362b
+    Darker green    #3a5e27
+    Lighter green   #859448
+    Orange          #f75A0d
+    Red orange      #f34508
+
+    Text colors:
+    Standard: Nearly white  #f5f5fa
+    Disabled: Greyish:      #aeaeb2
+*/

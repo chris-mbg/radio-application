@@ -1,0 +1,38 @@
+.channelPageContainer {
+  position: relative;
+  background-color: #251e1879;
+  box-shadow: 2px 4px 8px 0 #aeaeb233;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 3rem 0.5rem;
+}
+.pageCompContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.tagline {
+  text-align: center;
+  font-style: italic;
+  max-width: 700px;
+  margin: 1rem auto;
+  line-height: 1.5rem;
+}
+.imgWrapper img {
+  width: 100px;
+  height: 100px;
+}
+
+@media screen and (min-width: 576px){
+  .heading {
+    font-size: 2.8rem;
+  }
+}
+@media screen and (min-width: 1200px){
+  .channelPageContainer {
+    max-width: 1100px;
+    margin: 3rem auto;
+  }
+}
